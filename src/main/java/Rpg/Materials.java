@@ -15,7 +15,6 @@ public class Materials
     public static ItemStack Customize(int ID, boolean hasEnchantment)
     {
         MaterialEnum material = MaterialEnum.getFromID(ID);
-        Material type;
         ItemStack itemStack = new ItemStack(material.material);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(material.getName());
@@ -30,8 +29,12 @@ public class Materials
     {
         Location BlockLocationBase = block.getLocation();
         Location BlockLocation = BlockLocationBase.add(0.5,0.5,0.5);
-        player.giveExp(MaterialEnum.getFromID(objectID).getXp());
         player.getWorld().dropItem(BlockLocation, Materials.Customize(objectID, hasEnchantment));
+    }
+
+    public static void DropExp(int objectID, Player player)
+    {
+        player.giveExp(MaterialEnum.getFromID(objectID).getXp());
     }
 
     public enum MaterialEnum
@@ -49,8 +52,11 @@ public class Materials
         6 - ⭐⭐⭐ - Violet
         */
 
-        PRISMARINE_SHARD(2,"§fÉclat de prismarine",0, Arrays.asList("","§fTres commun."), Material.PRISMARINE_SHARD, 4),
-        PRISMARINE(1,"§fPrismarine",0, Arrays.asList("","§fTres commun."), Material.PRISMARINE);
+        PRISMARINE(1,"§fPrismarine",0, Arrays.asList("","§fTres commun."), Material.PRISMARINE,400,4),
+        PRISMARINE_SHARD(2,"§fÉclat de prismarine",0, Arrays.asList("","§fTres commun."), Material.PRISMARINE_SHARD, 400,4),
+        AMETHYSTE(3, "§bAméthyste",3,Arrays.asList("","§bRare."),Material.PURPLE_STAINED_GLASS, 100, 18),
+        AMETHYSTE_SHARD(4, "§bÉclat d'améthyste",3,Arrays.asList("","§bRare."),Material.PURPLE_DYE, 100, 18),
+        ;
 
         private int id;
         private String name;
@@ -64,14 +70,13 @@ public class Materials
 
         //Other
         private int xp;
+        private int baseprice;
 
         private static Map<Integer, MaterialEnum> ID_MAP = new HashMap<>();
-        private static Map<Integer, MaterialEnum> MATERIAL_MAP = new HashMap<>();
 
-        private MaterialEnum(int id, String name,int rarity,List description, Material material) { this.id = id;this.name = name;this.rarity = rarity;this.description = description;this.material = material; }
-        private MaterialEnum(int id, String name,int rarity,List description, Material material, Enchantment enchantment, int enchantmentlvl) { this.id = id;this.name = name;this.rarity = rarity;this.description = description;this.material = material;this.enchantment = enchantment;this.enchantmentlvl = enchantmentlvl; }
-        private MaterialEnum(int id, String name,int rarity,List description, Material material, int xp) { this.id = id;this.name = name;this.rarity = rarity;this.description = description;this.material = material;this.xp = xp;
-        }
+        private MaterialEnum(int id, String name,int rarity,List description, Material material, int baseprice) { this.id = id;this.name = name;this.rarity = rarity;this.description = description;this.material = material;this.baseprice=baseprice; }
+        private MaterialEnum(int id, String name,int rarity,List description, Material material, int baseprice, Enchantment enchantment, int enchantmentlvl) { this.id = id;this.name = name;this.rarity = rarity;this.description = description;this.material = material; this.baseprice=baseprice; this.enchantment = enchantment;this.enchantmentlvl = enchantmentlvl; }
+        private MaterialEnum(int id, String name,int rarity,List description, Material material, int baseprice, int xp) { this.id = id;this.name = name;this.rarity = rarity;this.description = description;this.material = material; this.baseprice=baseprice; this.xp = xp; }
 
         static { for(MaterialEnum material : values()) {  ID_MAP.put(material.id, material); } }
         public static MaterialEnum getFromID(int id) { return ID_MAP.get(id); }
@@ -84,5 +89,6 @@ public class Materials
         public Enchantment getEnchantment(){return enchantment;}
         public int getEnchantmentlvl(){return enchantmentlvl;}
         public int getXp(){return xp;}
+        public int getBaseprice(){return baseprice;}
     }
 }
