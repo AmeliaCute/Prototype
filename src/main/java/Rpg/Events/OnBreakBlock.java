@@ -19,7 +19,8 @@ public class OnBreakBlock implements Listener
         e.setDropItems(false);
 
         if(block.getType().equals(Material.PRISMARINE)) { Materials.Drop(2, block, player, false); Materials.DropExp(2, player); }
-        if(block.getType().equals(Material.PURPLE_STAINED_GLASS)) { Materials.Drop(4, block, player, false); Materials.DropExp(4, player);}
+        if(block.getType().equals(Material.PURPLE_STAINED_GLASS)) { Materials.Drop(4, block, player, false); Materials.DropExp(4, player); }
+        if(block.getType().equals(Material.PURPLE_WOOL)) { Materials.Drop(5, block, player, true); Materials.DropExp(5, player); }
     }
 
 }
