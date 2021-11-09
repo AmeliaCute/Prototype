@@ -1,5 +1,6 @@
 package Rpg.Events;
 
+import Rpg.Materials;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -11,15 +12,15 @@ public class OnBreakBlock implements Listener
 {
     @SuppressWarnings("unlikely-arg-type")
     @EventHandler
-    public static void onBreakBlock(BlockBreakEvent e)
+    public void onBreakBlock(BlockBreakEvent e)
     {
         Player player = e.getPlayer();
         Block block = e.getBlock();
+        e.setDropItems(false);
 
-        if(block.equals(Material.PRISMARINE))
+        if(block.getType().equals(Material.PRISMARINE))
         {
-            block.getDrops().clear();
-
+            Materials.Drop(2, block, player, false);
         }
     }
 

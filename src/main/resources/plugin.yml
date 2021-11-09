@@ -1,6 +1,6 @@
 name: FacProto1
 version: '${version}'
-main: Faction.ProtoSpigot
+main: Rpg.ProtoSpigot
 api-version: 1.16
 load: STARTUP
 authors: [ Xelow ]
