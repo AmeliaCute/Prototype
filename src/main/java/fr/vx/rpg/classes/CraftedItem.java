@@ -23,7 +23,7 @@ public class CraftedItem extends Item {
 		
 		super(material, name, rarity, basePrice);
 		craftable = true;
-		NamespacedKey key = new NamespacedKey(RPG.getPlugin(RPG.class), name);
+		NamespacedKey key = new NamespacedKey(RPG.getPlugin(RPG.class), material.name());
 		
 		if (isShapeless) {
 			
