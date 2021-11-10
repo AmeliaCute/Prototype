@@ -1,10 +1,6 @@
-name: FacProto1
-version: '${version}'
-main: Rpg.ProtoSpigot
+name: RPG
+version: inDev
+main: fr.vx.rpg.RPG
 api-version: 1.16
 load: STARTUP
-authors: [ Xelow ]
-commands:
-  protogive:
-    permission: admin
-    description: Give des objets du plugin
+authors: [ Xelow, Venodez]

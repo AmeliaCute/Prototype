@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-group = 'ProtoSpigot'
-version = '1.0-PROTOTYPE'
+group = 'RPG'
+version = 'inDev'
 
 repositories {
     mavenCentral()
