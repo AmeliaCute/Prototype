@@ -2,5 +2,4 @@ name: RPG
 version: inDev
 main: fr.vx.rpg.RPG
 api-version: 1.16
-load: STARTUP
 authors: [ Xelow, Venodez]

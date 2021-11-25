@@ -10,7 +10,7 @@ public class Houses
 
     public static void Register()
     {
-        MyHouse = new House("MyHouse", new Location(Bukkit.getWorld("world"), -84, 11, -214), new Location(Bukkit.getWorld("world"),-90.5, 6, -232.5));
+        MyHouse = new House("MyHouse", new Location(Bukkit.getWorld("world"), 0, 5, 0), new Location(Bukkit.getWorld("world"),-90.5, 6, -232.5));
     }
 
 }
