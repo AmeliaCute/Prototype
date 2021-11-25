@@ -4,6 +4,8 @@ import fr.vx.rpg.classes.Item.CraftedItem;
 import fr.vx.rpg.classes.Item.DroppedItem;
 import fr.vx.rpg.classes.Item.Rarity;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class Items {
 		CONDENSED_AMETHYSTE = new DroppedItem(Material.PURPLE_STAINED_GLASS, "§bAméthyste condensée", Rarity.RARE, 3600, Material.PURPLE_WOOL, 64);
 		GOLD_NUGGET = new DroppedItem(Material.GOLD_NUGGET, "§2Pepite d'or", Rarity.UNCOMMON, 100, Material.GOLD_ORE, 12);
 
-		List MAGIC_UPGRADE_INGREDIENTS = new LinkedList();
+		List<ItemStack> MAGIC_UPGRADE_INGREDIENTS = new LinkedList<ItemStack>();
 		MAGIC_UPGRADE_INGREDIENTS.add(GOLD_NUGGET.getItemStack());
 		MAGIC_UPGRADE_INGREDIENTS.add(AMETHYSTE_SHARD.getItemStack());
 		MAGIC_UPGRADE_INGREDIENTS.add(GOLD_NUGGET.getItemStack());
