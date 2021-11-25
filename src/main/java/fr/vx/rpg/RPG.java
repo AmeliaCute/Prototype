@@ -1,9 +1,9 @@
 package fr.vx.rpg;
 
-import fr.vx.rpg.classes.Houses;
+import fr.vx.rpg.classes.House.impl.Houses;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.vx.rpg.classes.Items;
+import fr.vx.rpg.classes.Item.impl.Items;
 
 public final class RPG extends JavaPlugin {
 

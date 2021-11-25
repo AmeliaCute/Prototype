@@ -1,5 +1,8 @@
-package fr.vx.rpg.classes;
+package fr.vx.rpg.classes.Item.impl;
 
+import fr.vx.rpg.classes.Item.CraftedItem;
+import fr.vx.rpg.classes.Item.DroppedItem;
+import fr.vx.rpg.classes.Item.Rarity;
 import org.bukkit.Material;
 import java.util.LinkedList;
 import java.util.List;

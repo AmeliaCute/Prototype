@@ -1,4 +1,4 @@
-package fr.vx.rpg.classes;
+package fr.vx.rpg.classes.Item;
 
 import java.util.Arrays;
 import java.util.List;

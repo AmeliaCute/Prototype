@@ -1,4 +1,4 @@
-package fr.vx.rpg.classes;
+package fr.vx.rpg.classes.Item;
 
 public enum Rarity {
 	
