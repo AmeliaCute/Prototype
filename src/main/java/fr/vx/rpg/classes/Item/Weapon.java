@@ -1,6 +1,10 @@
 package fr.vx.rpg.classes.Item;
 
 import fr.vx.rpg.RPG;
+import fr.vx.rpg.classes.mobs.Mob;
+import net.minecraft.server.v1_16_R3.EntityCreature;
+import net.minecraft.server.v1_16_R3.EntityTypes;
+import net.minecraft.server.v1_16_R3.WorldServer;
 
 import java.util.UUID;
 
@@ -9,6 +13,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -65,6 +71,11 @@ public class Weapon extends Item implements Listener
         Location location = e.getEntity().getLocation();
         if(dropable == true && monster.equals(this.monster))
         {
+        	@SuppressWarnings("unchecked")
+			EntityTypes<? extends EntityCreature> type = (EntityTypes<? extends EntityCreature>) ((CraftEntity) e.getEntity()).getHandle().getEntityType();
+        	Mob mob = new Mob(type, e.getEntity().getLocation(), "YOO", 2);
+        	WorldServer world = ((CraftWorld) e.getEntity().getWorld()).getHandle();
+        	world.addEntity(mob);
             e.getDrops().clear(); e.getDrops().add(this.getItemStack());
         }
     }
