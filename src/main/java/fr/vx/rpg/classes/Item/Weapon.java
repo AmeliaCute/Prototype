@@ -1,6 +1,9 @@
 package fr.vx.rpg.classes.Item;
 
 import fr.vx.rpg.RPG;
+
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,6 +13,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -49,7 +53,7 @@ public class Weapon extends Item implements Listener
         ItemStack itemstack = new ItemStack(this.tools);
         ItemMeta itemMeta = itemstack.getItemMeta();
         itemMeta.setDisplayName(this.name);
-        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier("generic.attackDamage", attackdamage, AttributeModifier.Operation.ADD_NUMBER));
+        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", attackdamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
         itemstack.setItemMeta(itemMeta);
         return itemstack;
     }
