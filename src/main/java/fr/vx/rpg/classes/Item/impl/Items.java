@@ -3,7 +3,9 @@ package fr.vx.rpg.classes.Item.impl;
 import fr.vx.rpg.classes.Item.CraftedItem;
 import fr.vx.rpg.classes.Item.DroppedItem;
 import fr.vx.rpg.classes.Item.Rarity;
+import fr.vx.rpg.classes.Item.Weapon;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedList;
@@ -16,6 +18,8 @@ public class Items {
 	public static DroppedItem GOLD_NUGGET;
 
 	public static CraftedItem MAGIC_UPGRADE;
+
+	public static Weapon SWORD_TEST;
 	
 	public static void register() {
 
@@ -34,6 +38,8 @@ public class Items {
 		MAGIC_UPGRADE_INGREDIENTS.add(AMETHYSTE_SHARD.getItemStack());
 		MAGIC_UPGRADE_INGREDIENTS.add(GOLD_NUGGET.getItemStack());
 		MAGIC_UPGRADE = new CraftedItem(Material.CREEPER_BANNER_PATTERN, "§1Amelioration magique", Rarity.VERY_RARE, 7600, MAGIC_UPGRADE_INGREDIENTS, 1);
+
+		SWORD_TEST = new Weapon(Material.NETHERITE_SWORD, "Testiboule", Rarity.LEGENDARY, 123, EntityType.PIG);
 	}
 
 }
