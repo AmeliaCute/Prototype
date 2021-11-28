@@ -4,10 +4,7 @@ import fr.vx.rpg.RPG;
 
 import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
-import fr.vx.rpg.classes.Item.impl.Items;
-import fr.vx.rpg.classes.mobs.Mob;
-import net.minecraft.server.v1_16_R3.EntityCreature;
-import net.minecraft.server.v1_16_R3.EntityTypes;
+import fr.vx.rpg.classes.mobs.impl.MobCollection;
 import net.minecraft.server.v1_16_R3.WorldServer;
 
 import java.util.UUID;
@@ -18,7 +15,6 @@ import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -78,9 +74,7 @@ public class Sword extends Item implements Listener
         if(dropable == true && monster.equals(this.monster))
         {
             //test mob
-            @SuppressWarnings("unchecked")
-            EntityTypes<? extends EntityCreature> type = (EntityTypes<? extends EntityCreature>) ((CraftEntity) e.getEntity()).getHandle().getEntityType();
-            Mob mob = new Mob(type, e.getEntity().getLocation(), "YOO", 2, Items.IRON_ESPADON.getItemStack());
+            MobCollection mob = new MobCollection(MobCollection.MobData.Chef, location);
             WorldServer world = ((CraftWorld) e.getEntity().getWorld()).getHandle();
             world.addEntity(mob);
 

@@ -1,6 +1,7 @@
 package fr.vx.rpg;
 
 import fr.vx.rpg.classes.House.impl.Houses;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.vx.rpg.classes.Item.impl.Items;

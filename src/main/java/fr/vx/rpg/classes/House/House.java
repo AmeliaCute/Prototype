@@ -16,12 +16,14 @@ public class House implements Listener
     private String name;
     private Location DoorLocation;
     private Location HomeLocation;
+    private Type HouseType;
 
-    public House(String name, Location DoorLocation, Location HomeLocation)
+    public House(String name, Location DoorLocation, Location HomeLocation, Type type)
     {
         this.name = name;
-        this.DoorLocation = DoorLocation;
+          this.DoorLocation = DoorLocation;
         this.HomeLocation = HomeLocation;
+        this.HouseType = type;
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
     }
 
@@ -41,7 +43,7 @@ public class House implements Listener
                 e.setCancelled(true);
                 player.teleport(HomeLocation);
                 player.playSound(player.getLocation(), Sound.BLOCK_WOODEN_TRAPDOOR_CLOSE, 3.0F, 0.5F);
-                player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5, 5));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 35, 5));
             }
         }
         else return;
