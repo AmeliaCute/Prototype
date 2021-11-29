@@ -1,6 +1,7 @@
 package fr.vx.rpg;
 
 import fr.vx.rpg.classes.House.impl.Houses;
+import fr.vx.rpg.classes.mobs.impl.Mobs;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +14,7 @@ public final class RPG extends JavaPlugin {
     	
     	Items.register();
         Houses.Register();
+        Mobs.register();
     }
 
     @Override

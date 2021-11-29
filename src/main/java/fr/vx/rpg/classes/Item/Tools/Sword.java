@@ -4,7 +4,8 @@ import fr.vx.rpg.RPG;
 
 import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
-import fr.vx.rpg.classes.mobs.impl.MobCollection;
+import fr.vx.rpg.classes.mobs.Mob;
+import fr.vx.rpg.classes.mobs.impl.Mobs;
 import net.minecraft.server.v1_16_R3.WorldServer;
 
 import java.util.UUID;
@@ -73,11 +74,6 @@ public class Sword extends Item implements Listener
         Location location = e.getEntity().getLocation();
         if(dropable == true && monster.equals(this.monster))
         {
-            //test mob
-            MobCollection mob = new MobCollection(MobCollection.MobData.Chef, location);
-            WorldServer world = ((CraftWorld) e.getEntity().getWorld()).getHandle();
-            world.addEntity(mob);
-
             e.getDrops().clear(); e.getDrops().add(this.getItemStack());
         }
     }
