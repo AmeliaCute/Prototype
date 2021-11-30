@@ -32,11 +32,17 @@ public class Mob extends EntityCreature implements Listener
         this.mobEquipment = mobEquipment;
         this.drop = drop;
         LivingEntity entity = (LivingEntity) this.getBukkitEntity();
+        this.setLocation(location.getX(), location.getY(), location.getZ(), 90F, 0F);
         this.setCustomName(new ChatComponentText(name));
         this.setCustomNameVisible(true);
         setHearth(entity,hearth);
         setEquipment(entity, mobEquipment);
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
+    }
+
+    public Location getLocation()
+    {
+        return this.location;
     }
 
     private void setHearth(LivingEntity entity, float heart)

@@ -22,6 +22,6 @@ public class Mobs
 
         // MOB:
 
-        TEST = new Mob(EntityTypes.HUSK, new Location(Bukkit.getWorld("world"), 0, 10, 0), "Test", 50, TEST_EQUIPMENT, Items.GOLD_NUGGET.getItemStack());
+        TEST = new Mob(EntityTypes.HUSK, new Location(Bukkit.getWorld("world"), 12, 19, 51), "Test", 50, TEST_EQUIPMENT, Items.GOLD_NUGGET.getItemStack());
     }
 }

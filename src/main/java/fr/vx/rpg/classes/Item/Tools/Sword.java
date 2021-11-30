@@ -4,8 +4,11 @@ import fr.vx.rpg.RPG;
 
 import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
+import fr.vx.rpg.classes.Item.impl.Items;
 import fr.vx.rpg.classes.mobs.Mob;
+import fr.vx.rpg.classes.mobs.MobEquipment;
 import fr.vx.rpg.classes.mobs.impl.Mobs;
+import net.minecraft.server.v1_16_R3.EntityTypes;
 import net.minecraft.server.v1_16_R3.WorldServer;
 
 import java.util.UUID;
@@ -71,7 +74,6 @@ public class Sword extends Item implements Listener
     public void DropOn(EntityDeathEvent e)
     {
         EntityType monster = e.getEntityType();
-        Location location = e.getEntity().getLocation();
         if(dropable == true && monster.equals(this.monster))
         {
             e.getDrops().clear(); e.getDrops().add(this.getItemStack());
