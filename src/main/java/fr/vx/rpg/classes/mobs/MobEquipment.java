@@ -1,6 +1,10 @@
 package fr.vx.rpg.classes.mobs;
 
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
 public class MobEquipment
@@ -27,4 +31,20 @@ public class MobEquipment
     public ItemStack getBoots(){return Boots;}
     public ItemStack getTool(){return tool;}
 
+    public static void setHearth(LivingEntity entity, float heart)
+    {
+        AttributeInstance healthAttribute = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        healthAttribute.setBaseValue(heart*2);
+        entity.setHealth(heart*2);
+    }
+
+    public static void setEquipment(LivingEntity entity, MobEquipment mobEquipment)
+    {
+        EntityEquipment equip = entity.getEquipment();
+        equip.setHelmet(mobEquipment.getHelmet());
+        equip.setChestplate(mobEquipment.getChestplate());
+        equip.setLeggings(mobEquipment.getLeggings());
+        equip.setBoots(mobEquipment.getBoots());
+        equip.setItemInMainHand(mobEquipment.getTool());
+    }
 }

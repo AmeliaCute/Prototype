@@ -16,7 +16,6 @@ public final class RPG extends JavaPlugin {
     	Items.register();
         Houses.Register();
         Mobs.register();
-        this.getCommand("spawn").setExecutor(new spawnCommands());
     }
 
     @Override
