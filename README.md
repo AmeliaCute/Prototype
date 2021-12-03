@@ -8,3 +8,5 @@
 #### Anciens fichiers:
 
 1. [Map: Ville 1.1](https://cdn.discordapp.com/attachments/538082225099636737/913513650390695936/New_World.rar)
+
+###### Aucun fork ou copie du plugin est autorisé pour le moment. (Sauf autorisation des devs)
