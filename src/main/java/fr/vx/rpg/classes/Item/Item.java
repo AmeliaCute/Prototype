@@ -14,14 +14,14 @@ public class Item {
 	private String name;
 	private String description;
 	private Rarity rarity;
-	private int basePrice;
+	private float basePrice;
 	protected boolean enchanted = false;
 	protected List<Enchantment> enchants;
 	protected List<Integer> enchantsLvl;
 	protected boolean dropable = false;
 	protected boolean craftable = false;
 	
-	public Item(Material material, String name, Rarity rarity, int basePrice) {
+	public Item(Material material, String name, Rarity rarity, float basePrice) {
 		
 		this.material = material;
 		this.name = name;
@@ -31,7 +31,7 @@ public class Item {
 		
 	}
 	
-	public Item(Material material, String name, Rarity rarity, int basePrice, List<Enchantment> enchants, List<Integer> enchantsLvl) {
+	public Item(Material material, String name, Rarity rarity, float basePrice, List<Enchantment> enchants, List<Integer> enchantsLvl) {
 			
 		this(material, name, rarity, basePrice);
 		this.enchants = enchants;
@@ -64,7 +64,7 @@ public class Item {
 		
 	}
 	
-	public int getPrice() {
+	public float getPrice() {
 		
 		return basePrice;
 		

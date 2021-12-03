@@ -4,21 +4,13 @@ import fr.vx.rpg.RPG;
 
 import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
-import fr.vx.rpg.classes.Item.impl.Items;
-import fr.vx.rpg.classes.mobs.Mob;
-import fr.vx.rpg.classes.mobs.MobEquipment;
-import fr.vx.rpg.classes.mobs.impl.Mobs;
-import net.minecraft.server.v1_16_R3.EntityTypes;
-import net.minecraft.server.v1_16_R3.WorldServer;
 
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,12 +23,12 @@ public class Sword extends Item implements Listener
     private Material tools;
     private String name;
     private Rarity rarity;
-    private int attackdamage;
-    private int attackSpeed;
+    private float attackdamage;
+    private float attackSpeed;
     private EntityType monster;
     private boolean dropable;
 
-    public Sword(Material tools, String name, Rarity rarity, int attackdamage, int attackSpeed)
+    public Sword(Material tools, String name, Rarity rarity, float attackdamage, float attackSpeed)
     {
         super(tools, name, rarity, attackdamage);
         this.tools = tools;
@@ -45,7 +37,7 @@ public class Sword extends Item implements Listener
         this.attackdamage = attackdamage;
     }
 
-    public Sword(Material tools, String name, Rarity rarity, int attackdamage, int attackSpeed, EntityType dropOn)
+    public Sword(Material tools, String name, Rarity rarity, float attackdamage, float attackSpeed, EntityType dropOn)
     {
         super(tools, name, rarity, attackdamage);
         this.tools = tools;
