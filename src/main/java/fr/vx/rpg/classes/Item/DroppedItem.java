@@ -2,12 +2,9 @@ package fr.vx.rpg.classes.Item;
 
 import java.util.List;
 
-import fr.vx.rpg.classes.mobs.impl.Mobs;
-import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

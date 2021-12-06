@@ -3,3 +3,5 @@ version: inDev
 main: fr.vx.rpg.RPG
 api-version: 1.16
 authors: [ Xelow, Venodez]
+commands:
+  spawn:

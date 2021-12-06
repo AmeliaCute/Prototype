@@ -6,9 +6,9 @@ import net.minecraft.server.v1_16_R3.EntityTypes;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 
-public class ZombieMage extends Mob
+public class ZombieWizard extends Mob
 {
-    public ZombieMage(Location location)
+    public ZombieWizard(Location location)
     {
         super(EntityTypes.DROWNED, location);
         this.setLocation(location.getX(),location.getY(),location.getZ(),-90,0);
