@@ -7,7 +7,6 @@ import fr.vx.rpg.classes.Item.Tools.*;
 import fr.vx.rpg.classes.mobs.MobDrop;
 import fr.vx.rpg.classes.mobs.MobEquipment;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -73,7 +72,6 @@ public class Items {
 		ZOMBIE_MAGE = new MobEquipment(new ItemStack(Material.AIR), ZOMBIE_MAGE_CHESTPLATE.getItemStack(), ZOMBIE_MAGE_LEGGINGS.getItemStack(), ZOMBIE_MAGE_BOOTS.getItemStack(), null);
 
 		ZOMBIE_TANK_SWORD = new MobDrop("Zombie Renforcé", SILVER_SWORD.getItemStack(), 20);
-
 	}
 
 }

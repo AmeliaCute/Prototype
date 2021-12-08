@@ -1,4 +1,4 @@
-package fr.vx.rpg;
+package fr.vx.rpg.classes.Debug;
 
 import fr.vx.rpg.classes.mobs.impl.Zombies.Larbin;
 import fr.vx.rpg.classes.mobs.impl.Zombies.ZombieAssassin;
