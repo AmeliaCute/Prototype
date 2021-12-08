@@ -13,6 +13,7 @@ public class ZombieWizard extends Mob
         super(EntityTypes.DROWNED, location);
         this.setLocation(location.getX(),location.getY(),location.getZ(),-90,0);
         LivingEntity entity = (LivingEntity) this.getBukkitEntity();
-        Mob.setData(entity, "Zombie Mage", 35, Items.ZOMBIE_MAGE);
+        this.setData(entity, "Zombie Mage", 35, Items.ZOMBIE_MAGE);
+        this.initBaseIa();
     }
 }

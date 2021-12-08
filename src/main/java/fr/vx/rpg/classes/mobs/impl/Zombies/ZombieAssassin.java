@@ -15,8 +15,9 @@ public class ZombieAssassin extends Mob
         super(EntityTypes.DROWNED, location);
         this.setLocation(location.getX(),location.getY(),location.getZ(),-90,0);
         LivingEntity entity = (LivingEntity) this.getBukkitEntity();
-        Mob.setData(entity, "Zombie Assassin", 50, Items.ZOMBIE_ASSASSIN);
+        this.setData(entity, "Zombie Assassin", 50, Items.ZOMBIE_ASSASSIN);
         double moveSpeed = ((Attributable)entity).getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getValue();
-        entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(moveSpeed+1.2);
+        entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(moveSpeed+0.2);
+        this.initBaseIa();
     }
 }

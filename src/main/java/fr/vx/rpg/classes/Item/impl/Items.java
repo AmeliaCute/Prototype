@@ -4,6 +4,7 @@ import fr.vx.rpg.classes.Item.CraftedItem;
 import fr.vx.rpg.classes.Item.DroppedItem;
 import fr.vx.rpg.classes.Item.Rarity;
 import fr.vx.rpg.classes.Item.Tools.*;
+import fr.vx.rpg.classes.mobs.MobDrop;
 import fr.vx.rpg.classes.mobs.MobEquipment;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -35,6 +36,8 @@ public class Items {
 	public static Leggings ZOMBIE_MAGE_LEGGINGS;
 
 	public static Boots ZOMBIE_MAGE_BOOTS;
+
+	public static MobDrop ZOMBIE_TANK_SWORD;
 
 	public static void register() {
 
@@ -68,6 +71,9 @@ public class Items {
 		ZOMBIE_TANK = new MobEquipment(new ItemStack(Material.IRON_HELMET), new ItemStack(Material.IRON_CHESTPLATE), new ItemStack(Material.IRON_LEGGINGS), new ItemStack(Material.NETHERITE_BOOTS), SILVER_SWORD.getItemStack());
 		ZOMBIE_ASSASSIN = new MobEquipment(new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR), SWORD_OF_ASSASSIN.getItemStack());
 		ZOMBIE_MAGE = new MobEquipment(new ItemStack(Material.AIR), ZOMBIE_MAGE_CHESTPLATE.getItemStack(), ZOMBIE_MAGE_LEGGINGS.getItemStack(), ZOMBIE_MAGE_BOOTS.getItemStack(), null);
+
+		ZOMBIE_TANK_SWORD = new MobDrop("Zombie Renforcé", SILVER_SWORD.getItemStack(), 20);
+
 	}
 
 }

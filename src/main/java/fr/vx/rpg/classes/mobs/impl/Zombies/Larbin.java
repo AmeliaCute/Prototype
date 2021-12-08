@@ -13,6 +13,7 @@ public class Larbin extends Mob
         super(EntityTypes.ZOMBIE, location);
         this.setLocation(location.getX(), location.getY(),location.getZ(),-90,0);
         LivingEntity entity = (LivingEntity) this.getBukkitEntity();
-        Mob.setData(entity, "Larbin", 10, Items.LARBIN);
+        this.setData(entity, "Larbin", 10, Items.LARBIN);
+        this.initBaseIa();
     }
 }

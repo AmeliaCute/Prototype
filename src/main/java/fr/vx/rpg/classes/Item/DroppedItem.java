@@ -24,7 +24,6 @@ public class DroppedItem extends Item implements Listener {
 		this.xp = xp;
 		dropable = true;
 		Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
-		
 	}
 
 	public DroppedItem(Material material, String name, Rarity rarity, int basePrice, Material dropFrom, int xp, List<Enchantment> enchants, List<Integer> enchantsLvl) {

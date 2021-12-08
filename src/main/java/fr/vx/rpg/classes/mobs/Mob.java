@@ -1,8 +1,6 @@
 package fr.vx.rpg.classes.mobs;
 
-import net.minecraft.server.v1_16_R3.ChatComponentText;
-import net.minecraft.server.v1_16_R3.EntityCreature;
-import net.minecraft.server.v1_16_R3.EntityTypes;
+import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -19,9 +17,9 @@ public class Mob extends EntityCreature implements Listener
         this.setLocation(location.getX(), location.getY(), location.getZ(), -90, 0);
     }
 
-    public static void setData(LivingEntity entity, String name, float heart, MobEquipment mobEquipment)
+    public void setData(LivingEntity entity, String name, float heart, MobEquipment mobEquipment)
     {
-        entity.setCustomName(String.valueOf(new ChatComponentText(name)));
+        entity.setCustomName(name);
         entity.setCustomNameVisible(true);
 
         EntityEquipment equip = entity.getEquipment();
@@ -36,5 +34,17 @@ public class Mob extends EntityCreature implements Listener
         entity.setHealth(heart*2);
     }
 
+    public void initBaseIa()
+    {
+        this.goalSelector.a(0, new PathfinderGoalFloat(this));
 
+        this.goalSelector.a(4, new PathfinderGoalMeleeAttack(this, 1.0D, true));
+        this.goalSelector.a(5, new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
+        this.goalSelector.a(7, new PathfinderGoalRandomStroll(this, 1.0D));
+        this.goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
+        this.goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+
+        this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget<EntityHuman>(this, EntityHuman.class, true));
+    }
 }
