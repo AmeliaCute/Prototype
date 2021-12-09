@@ -5,6 +5,7 @@ import fr.vx.rpg.RPG;
 import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -55,9 +56,10 @@ public class Sword extends Item implements Listener
     {
         ItemStack itemstack = new ItemStack(this.tools);
         ItemMeta itemMeta = itemstack.getItemMeta();
-        itemMeta.setDisplayName(this.name);
+        itemMeta.setDisplayName(rarity.getColor()+name);
         itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", attackdamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
         itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", attackSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        itemMeta.setLore(Arrays.asList("",rarity.getDescription()));
         itemstack.setItemMeta(itemMeta);
         return itemstack;
     }

@@ -29,7 +29,6 @@ public class MobDrop implements Listener
     public void onMobDeath(EntityDeathEvent e)
     {
         String name = e.getEntity().getName();
-        e.getDrops().clear();
 
         if(name.equals(this.mobName))
         {

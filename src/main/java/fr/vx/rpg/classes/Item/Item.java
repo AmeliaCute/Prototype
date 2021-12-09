@@ -92,7 +92,7 @@ public class Item {
 		
 		ItemStack item = new ItemStack(material);
 		ItemMeta itemMeta = item.getItemMeta();
-		itemMeta.setDisplayName(name);
+		itemMeta.setDisplayName(rarity.getColor()+name);
 		itemMeta.setLore(Arrays.asList("", description));
 		
 		if (enchanted) {

@@ -42,9 +42,9 @@ public class ChestPlate extends Item
     {
         ItemStack itemstack = new ItemStack(this.material);
         ItemMeta itemMeta = itemstack.getItemMeta();
-        itemMeta.setDisplayName(name);
-        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "generic.armor", protection, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST));
-        if(heart > 0){itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "generic.maxHealth", heart, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST));}
+        itemMeta.setDisplayName(rarity.getColor()+name);
+        itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(), "generic.armor", protection, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST));
+        if(heart > 0){itemMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(), "generic.maxHealth", heart, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST));}
         itemMeta.setLore(Arrays.asList("",rarity.getDescription()));
         itemstack.setItemMeta(itemMeta);
         return itemstack;

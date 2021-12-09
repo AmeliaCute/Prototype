@@ -24,17 +24,21 @@ public class Items {
 	public static Sword WOODEN_SWORD;
 	public static Sword SILVER_SWORD;
 	public static Sword SWORD_OF_ASSASSIN;
+	public static Sword SWORD_OF_BARBSEEKER;
 
 	public static MobEquipment LARBIN;
 	public static MobEquipment ZOMBIE_TANK;
 	public static MobEquipment ZOMBIE_ASSASSIN;
 	public static MobEquipment ZOMBIE_MAGE;
+	public static MobEquipment BARBSEEKER;
 
 	public static ChestPlate ZOMBIE_MAGE_CHESTPLATE;
-
 	public static Leggings ZOMBIE_MAGE_LEGGINGS;
-
 	public static Boots ZOMBIE_MAGE_BOOTS;
+
+	public static ChestPlate BARBSEEKER_CHESTPLATE;
+	public static Leggings BARBSEEKER_LEGGINGS;
+	public static Boots BARBSEEKER_BOOTS;
 
 	public static MobDrop ZOMBIE_TANK_SWORD;
 
@@ -61,15 +65,21 @@ public class Items {
 		WOODEN_SWORD = new Sword(Material.WOODEN_SWORD, "Epée en Bois", Rarity.VERY_COMMON, 6, 1.2F);
 		SILVER_SWORD = new Sword(Material.IRON_SWORD, "Epée en argent", Rarity.RARE, 18, 1.1F);
 		SWORD_OF_ASSASSIN = new Sword(Material.NETHERITE_SWORD, "Epée de l'Assassin", Rarity.RARE, 30, 1.5F);
+		SWORD_OF_BARBSEEKER = new Sword(Material.IRON_AXE, "Epée du Barbare", Rarity.VERY_RARE, 78, 1.0F);
 
-		ZOMBIE_MAGE_CHESTPLATE = new ChestPlate(Material.IRON_CHESTPLATE, "Plastron des zombies mages", Rarity.VERY_RARE, 15);
-		ZOMBIE_MAGE_LEGGINGS = new Leggings(Material.GOLDEN_LEGGINGS, "Pantalon des zombies mages", Rarity.VERY_RARE, 10);
-		ZOMBIE_MAGE_BOOTS = new Boots(Material.GOLDEN_BOOTS, "Bottes des zombies mages", Rarity.VERY_RARE, 6, 0.1F);
+		ZOMBIE_MAGE_CHESTPLATE = new ChestPlate(Material.IRON_CHESTPLATE, "Plastron des Zombies mages", Rarity.RARE, 15);
+		ZOMBIE_MAGE_LEGGINGS = new Leggings(Material.GOLDEN_LEGGINGS, "Pantalon des Zombies mages", Rarity.RARE, 10);
+		ZOMBIE_MAGE_BOOTS = new Boots(Material.GOLDEN_BOOTS, "Bottes des Zombies mages", Rarity.RARE, 6, 0.1F);
+
+		BARBSEEKER_CHESTPLATE = new ChestPlate(Material.LEATHER_CHESTPLATE, "Plastron du Barbare", Rarity.VERY_RARE, 23, 10);
+		BARBSEEKER_LEGGINGS = new Leggings(Material.LEATHER_LEGGINGS, "Pantalon du Barbare", Rarity.VERY_RARE, 18, 10);
+		BARBSEEKER_BOOTS = new Boots(Material.LEATHER_BOOTS, "Bottes du Barbare", Rarity.VERY_RARE, 10, 5, 0.1F);
 
 		LARBIN = new MobEquipment(new ItemStack(Material.IRON_HELMET), new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR), WOODEN_SWORD.getItemStack());
 		ZOMBIE_TANK = new MobEquipment(new ItemStack(Material.IRON_HELMET), new ItemStack(Material.IRON_CHESTPLATE), new ItemStack(Material.IRON_LEGGINGS), new ItemStack(Material.NETHERITE_BOOTS), SILVER_SWORD.getItemStack());
 		ZOMBIE_ASSASSIN = new MobEquipment(new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR), SWORD_OF_ASSASSIN.getItemStack());
 		ZOMBIE_MAGE = new MobEquipment(new ItemStack(Material.AIR), ZOMBIE_MAGE_CHESTPLATE.getItemStack(), ZOMBIE_MAGE_LEGGINGS.getItemStack(), ZOMBIE_MAGE_BOOTS.getItemStack(), null);
+		BARBSEEKER = new MobEquipment(new ItemStack(Material.AIR), BARBSEEKER_CHESTPLATE.getItemStack(), BARBSEEKER_LEGGINGS.getItemStack(), BARBSEEKER_BOOTS.getItemStack(), SWORD_OF_BARBSEEKER.getItemStack());
 
 		ZOMBIE_TANK_SWORD = new MobDrop("Zombie Renforcé", SILVER_SWORD.getItemStack(), 20);
 	}

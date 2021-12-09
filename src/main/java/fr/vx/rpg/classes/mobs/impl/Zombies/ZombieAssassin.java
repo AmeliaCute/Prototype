@@ -2,6 +2,7 @@ package fr.vx.rpg.classes.mobs.impl.Zombies;
 
 import fr.vx.rpg.classes.Item.impl.Items;
 import fr.vx.rpg.classes.mobs.Mob;
+import fr.vx.rpg.classes.mobs.Tiers;
 import net.minecraft.server.v1_16_R3.EntityTypes;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attributable;
@@ -15,7 +16,7 @@ public class ZombieAssassin extends Mob
         super(EntityTypes.DROWNED, location);
         this.setLocation(location.getX(),location.getY(),location.getZ(),-90,0);
         LivingEntity entity = (LivingEntity) this.getBukkitEntity();
-        this.setData(entity, "Zombie Assassin", 50, Items.ZOMBIE_ASSASSIN);
+        this.setData(entity, "Zombie Assassin", 50, Items.ZOMBIE_ASSASSIN, Tiers.One);
         double moveSpeed = ((Attributable)entity).getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getValue();
         entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(moveSpeed+0.2);
         this.initBaseIa();

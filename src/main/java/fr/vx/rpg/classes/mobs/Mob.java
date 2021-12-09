@@ -17,9 +17,9 @@ public class Mob extends EntityCreature implements Listener
         this.setLocation(location.getX(), location.getY(), location.getZ(), -90, 0);
     }
 
-    public void setData(LivingEntity entity, String name, float heart, MobEquipment mobEquipment)
+    public void setData(LivingEntity entity, String name, float heart, MobEquipment mobEquipment, Tiers tiers)
     {
-        entity.setCustomName(name);
+        entity.setCustomName(tiers.getColor()+name);
         entity.setCustomNameVisible(true);
 
         EntityEquipment equip = entity.getEquipment();
@@ -28,6 +28,16 @@ public class Mob extends EntityCreature implements Listener
         equip.setLeggings(mobEquipment.getLeggings());
         equip.setBoots(mobEquipment.getBoots());
         equip.setItemInMainHand(mobEquipment.getTool());
+
+        AttributeInstance healthAttribute = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        healthAttribute.setBaseValue(heart*2);
+        entity.setHealth(heart*2);
+    }
+
+    public void setData(LivingEntity entity, String name, float heart, Tiers tiers)
+    {
+        entity.setCustomName(tiers.getColor()+name);
+        entity.setCustomNameVisible(true);
 
         AttributeInstance healthAttribute = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
         healthAttribute.setBaseValue(heart*2);

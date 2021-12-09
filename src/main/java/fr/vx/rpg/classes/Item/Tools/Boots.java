@@ -45,7 +45,7 @@ public class Boots extends Item
     {
         ItemStack itemstack = new ItemStack(this.material);
         ItemMeta itemMeta = itemstack.getItemMeta();
-        itemMeta.setDisplayName(name);
+        itemMeta.setDisplayName(rarity.getColor()+name);
         itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(), "generic.armor", protection, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
         itemMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, new AttributeModifier(UUID.randomUUID(), "generic.movementSpeed", speed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
         if(heart > 0){itemMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(), "generic.maxHealth", heart, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));}
