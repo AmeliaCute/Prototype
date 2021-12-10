@@ -1,6 +1,6 @@
 package fr.vx.rpg.classes.Crafting;
 
-import java.util.Arrays;
+import java.util.Arrays;import java.util.Comparator;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -56,8 +56,37 @@ public class CauldronCraft implements Listener {
 		
 	}
 	
+	public static boolean isCrafted(List<ItemStack> ingredients, List<ItemStack> actualIngredients) {
+		
+		
+		if (ingredients.size() != actualIngredients.size()) {	
+			return (false);
+		}
+		
+		
+		int equal = 0;
+		
+		for (ItemStack item : ingredients) {
+			
+			for (ItemStack item2 : actualIngredients) {
+				
+				if (item.equals(item2)) {
+					
+					equal++;
+					break;
+					
+				}
+				
+			}
+			
+		}
+		
+		return (equal == ingredients.size());
+		
+	}
+	
 	@EventHandler
-	public void onCraft(PlayerDropItemEvent event) {
+	private void onCraft(PlayerDropItemEvent event) {
 		
 		if (event.getItemDrop() != null) {
 			
@@ -100,7 +129,7 @@ public class CauldronCraft implements Listener {
 
 							}
 							
-							if (craftIngredients.containsAll(Arrays.asList(new_ingredients))) {
+							if (CauldronCraft.isCrafted(craftIngredients, Arrays.asList(new_ingredients))) {
 								
 								location.getWorld().dropItemNaturally(location.add(0, 1, 0), result);
 								craftState.clear();
