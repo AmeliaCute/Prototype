@@ -2,6 +2,7 @@ package fr.vx.rpg.classes.Item.impl;
 
 import fr.vx.rpg.classes.Item.CraftedItem;
 import fr.vx.rpg.classes.Item.DroppedItem;
+import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
 import fr.vx.rpg.classes.Item.Tools.*;
 import fr.vx.rpg.classes.mobs.MobDrop;
@@ -17,8 +18,12 @@ public class Items {
 	public static DroppedItem AMETHYSTE_SHARD;
 	public static DroppedItem CONDENSED_AMETHYSTE;
 	public static DroppedItem GOLD_NUGGET;
+	public static DroppedItem SILVER_NUGGET;
 
 	public static CraftedItem MAGIC_UPGRADE;
+
+	public static Item GOLD_INGOT;
+	public static Item SILVER_INGOT;
 
 	public static Sword IRON_ESPADON;
 	public static Sword WOODEN_SWORD;
@@ -40,13 +45,17 @@ public class Items {
 	public static Leggings BARBSEEKER_LEGGINGS;
 	public static Boots BARBSEEKER_BOOTS;
 
-	public static MobDrop ZOMBIE_TANK_SWORD;
+	public static MobDrop ZOMBIE_TANK_SWORD_DROP;
 
 	public static void register() {
 
-		AMETHYSTE_SHARD = new DroppedItem(Material.PURPLE_DYE, "§fEclat d'Améthyste", Rarity.VERY_COMMON, 400, Material.PURPLE_STAINED_GLASS, 16);
-		CONDENSED_AMETHYSTE = new DroppedItem(Material.PURPLE_STAINED_GLASS, "§bAméthyste condensée", Rarity.RARE, 3600, Material.PURPLE_WOOL, 64);
-		GOLD_NUGGET = new DroppedItem(Material.GOLD_NUGGET, "§2Pepite d'or", Rarity.UNCOMMON, 100, Material.GOLD_ORE, 12);
+		AMETHYSTE_SHARD = new DroppedItem(Material.PURPLE_DYE, "Eclat d'Améthyste", Rarity.VERY_COMMON, 400, Material.PURPLE_STAINED_GLASS, 16);
+		CONDENSED_AMETHYSTE = new DroppedItem(Material.PURPLE_STAINED_GLASS, "Améthyste condensée", Rarity.RARE, 3600, Material.PURPLE_WOOL, 64);
+		GOLD_NUGGET = new DroppedItem(Material.GOLD_NUGGET, "Pepite d'or", Rarity.UNCOMMON, 100, Material.GOLD_ORE, 12);
+		SILVER_NUGGET = new DroppedItem(Material.IRON_NUGGET, "Pepite d'argent", Rarity.UNCOMMON, 1500, Material.IRON_ORE, 34);
+
+		GOLD_INGOT = new Item(Material.GOLD_INGOT, "L'ingot d'Or", Rarity.RARE, 500);
+		SILVER_INGOT = new Item(Material.IRON_INGOT, "L'ingot d'Argent", Rarity.RARE, 1900);
 
 		List<ItemStack> MAGIC_UPGRADE_INGREDIENTS = new ArrayList<>();
 		MAGIC_UPGRADE_INGREDIENTS.add(GOLD_NUGGET.getItemStack());
@@ -81,7 +90,7 @@ public class Items {
 		ZOMBIE_MAGE = new MobEquipment(new ItemStack(Material.AIR), ZOMBIE_MAGE_CHESTPLATE.getItemStack(), ZOMBIE_MAGE_LEGGINGS.getItemStack(), ZOMBIE_MAGE_BOOTS.getItemStack(), null);
 		BARBSEEKER = new MobEquipment(new ItemStack(Material.AIR), BARBSEEKER_CHESTPLATE.getItemStack(), BARBSEEKER_LEGGINGS.getItemStack(), BARBSEEKER_BOOTS.getItemStack(), SWORD_OF_BARBSEEKER.getItemStack());
 
-		ZOMBIE_TANK_SWORD = new MobDrop("Zombie Renforcé", SILVER_SWORD.getItemStack(), 20);
+		ZOMBIE_TANK_SWORD_DROP = new MobDrop("Zombie Renforcé", SILVER_SWORD.getItemStack(), 20);
 	}
 
 }

@@ -3,11 +3,11 @@ package fr.vx.rpg.classes.Crafting;
 import java.util.Arrays;import java.util.Comparator;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import fr.vx.rpg.classes.Jobs.JobEnum;
+import fr.vx.rpg.classes.Jobs.Wizard;
+import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -24,10 +24,12 @@ public class CauldronCraft implements Listener {
 
 	private ItemStack result;
 	private List<ItemStack> ingredients;
+	private JobEnum jobEnum;
 	
-	public CauldronCraft(ItemStack result) {
-		
+	public CauldronCraft(ItemStack result, JobEnum jobEnum)
+	{
 		this.result = result;
+		this.jobEnum = jobEnum;
 	}
 	
 	public void register() {
@@ -92,6 +94,7 @@ public class CauldronCraft implements Listener {
 			
 			List<ItemStack> craftIngredients = this.ingredients;
 			ItemStack result = this.result;
+			Player player = event.getPlayer();
 			
 			new BukkitRunnable() {
 				
@@ -130,7 +133,14 @@ public class CauldronCraft implements Listener {
 							}
 							
 							if (CauldronCraft.isCrafted(craftIngredients, Arrays.asList(new_ingredients))) {
-								
+								if(jobEnum.getLvlId() > Wizard.getLvl(player))
+								{
+									player.sendMessage(ChatColor.RED+"Vous avez essayez de faire une recette..");
+									player.sendMessage(ChatColor.RED+"Mais malheuresement vous n'aviez pas le niveau, et vous l'avez ratez..");
+									player.playSound(player.getLocation(),Sound.ENTITY_VILLAGER_HURT, 3.0F, 0.5F);
+									craftState.clear();
+									return;
+								}
 								location.getWorld().dropItemNaturally(location.add(0, 1, 0), result);
 								craftState.clear();
 								System.out.println("CRAFTE");

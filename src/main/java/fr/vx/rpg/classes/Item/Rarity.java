@@ -16,10 +16,8 @@ public enum Rarity {
 	private final ChatColor color;
 
 	private Rarity(String description, ChatColor color) {
-		
 		this.description = description;
 		this.color = color;
-		
 	}
 	
 	public String getDescription() { return description; }
