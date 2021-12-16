@@ -1,9 +1,8 @@
 package fr.vx.rpg.classes.Crafting;
 
-import java.util.Arrays;import java.util.Comparator;
+import java.util.Arrays;
 import java.util.List;
-
-import fr.vx.rpg.classes.Jobs.JobEnum;
+import fr.vx.rpg.classes.Jobs.JobRank;
 import fr.vx.rpg.classes.Jobs.Wizard;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -15,7 +14,6 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
-
 import fr.vx.rpg.RPG;
 import fr.vx.rpg.utils.CustomBlockData;
 import fr.vx.rpg.utils.Serializer;
@@ -24,12 +22,14 @@ public class CauldronCraft implements Listener {
 
 	private ItemStack result;
 	private List<ItemStack> ingredients;
-	private JobEnum jobEnum;
+	private JobRank jobRank;
+	private int xp;
 	
-	public CauldronCraft(ItemStack result, JobEnum jobEnum)
+	public CauldronCraft(ItemStack result, JobRank jobRank)
 	{
 		this.result = result;
-		this.jobEnum = jobEnum;
+		this.jobRank = jobRank;
+		this.xp = xp;
 	}
 	
 	public void register() {
@@ -133,7 +133,7 @@ public class CauldronCraft implements Listener {
 							}
 							
 							if (CauldronCraft.isCrafted(craftIngredients, Arrays.asList(new_ingredients))) {
-								if(jobEnum.getLvlId() > Wizard.getLvl(player))
+								if(jobRank.getLvlId() > Wizard.getLvl(player))
 								{
 									player.sendMessage(ChatColor.RED+"Vous avez essayez de faire une recette..");
 									player.sendMessage(ChatColor.RED+"Mais malheuresement vous n'aviez pas le niveau, et vous l'avez ratez..");

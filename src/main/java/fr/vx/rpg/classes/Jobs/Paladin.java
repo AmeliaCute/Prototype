@@ -2,17 +2,18 @@ package fr.vx.rpg.classes.Jobs;
 
 import fr.vx.rpg.utils.MySql;
 import org.bukkit.entity.Player;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-public class Wizard
+public class Paladin
 {
+
     public static void setLvl(Player player, JobRank jobRank)
     {
         try {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `level_wizard`= '" + jobRank.getLvlId() + "' WHERE `uuid`='" + player.getUniqueId().toString() +"'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `level_paladin`= '" + jobRank.getLvlId() + "' WHERE `uuid`='" + player.getUniqueId().toString() +"'");
             sts.executeUpdate();
             sts.close();
         } catch (SQLException e) { e.printStackTrace(); }
@@ -23,10 +24,10 @@ public class Wizard
         int joblvl = 0;
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `level_wizard` FROM `jobs` WHERE `uuid`= '" + player.getUniqueId().toString() + "' ");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `level_paladin` FROM `jobs` WHERE `uuid`= '" + player.getUniqueId().toString() + "' ");
             ResultSet rs = sts.executeQuery();
             if(rs.next()) {
-                joblvl = JobRank.getFromID(rs.getInt("level_wizard"));
+                joblvl = JobRank.getFromID(rs.getInt("level_paladin"));
             }
         } catch (SQLException e) { e.printStackTrace(); }
         return joblvl;
@@ -34,9 +35,10 @@ public class Wizard
 
     public static void addXp(Player player, int xp)
     {
+        int result = xp+getXp(player);
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `exp_wizard`= '" +getXp(player)+xp+ "' WHERE `uuid`='" + player.getUniqueId().toString() +"'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `exp_paladin`= '" +result+"' WHERE `uuid`='" + player.getUniqueId().toString() +"'");
             sts.executeUpdate();
             sts.close();
         }
@@ -51,11 +53,11 @@ public class Wizard
         int xp = 0;
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `exp_wizard` FROM `jobs` WHERE `uuid`= '" + player.getUniqueId().toString() + "' ");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `exp_paladin` FROM `jobs` WHERE `uuid`= '" + player.getUniqueId().toString() + "' ");
             ResultSet rs = sts.executeQuery();
             if(rs.next())
             {
-                xp = rs.getInt("exp_wizard");
+                xp = rs.getInt("exp_paladin");
             }
         }
         catch (SQLException e) {e.printStackTrace();}

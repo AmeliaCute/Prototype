@@ -1,14 +1,12 @@
 package fr.vx.rpg.classes.mobs;
 
 import fr.vx.rpg.RPG;
+import fr.vx.rpg.classes.Jobs.Paladin;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Objects;
 import java.util.Random;
 
 public class MobDrop implements Listener
@@ -29,12 +27,10 @@ public class MobDrop implements Listener
     public void onMobDeath(EntityDeathEvent e)
     {
         String name = e.getEntity().getName();
-
         if(name.equals(this.mobName))
         {
             Random random = new Random();
             int chance = random.nextInt(100);
-
             if(chance < this.dropChance)
             {
                 e.getDrops().add(this.drop);

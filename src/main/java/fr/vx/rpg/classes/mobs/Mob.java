@@ -11,7 +11,6 @@ import org.bukkit.inventory.EntityEquipment;
 
 public class Mob extends EntityCreature implements Listener
 {
-
     public Mob(EntityTypes entitytypes, Location location) {
         super(entitytypes, ((CraftWorld) location.getWorld()).getHandle());
         this.setLocation(location.getX(), location.getY(), location.getZ(), -90, 0);

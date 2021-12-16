@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.vx.rpg.classes.Jobs.JobEnum;
-import fr.vx.rpg.classes.Jobs.Wizard;
+import fr.vx.rpg.classes.Jobs.JobRank;
+import fr.vx.rpg.classes.Jobs.impl.jobs;
 import fr.vx.rpg.classes.Player.playerconnection;
+import fr.vx.rpg.classes.Quests.impl.quests;
 import fr.vx.rpg.utils.MySql;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
@@ -30,8 +31,10 @@ public final class RPG extends JavaPlugin
 
     	Items.register();
         Houses.Register();
+        quests.register();
+        jobs.Register();
 
-        CauldronCraft wtf = new CauldronCraft(new ItemStack(Items.SILVER_INGOT.getItemStack()), JobEnum.Initie);
+        CauldronCraft wtf = new CauldronCraft(new ItemStack(Items.SILVER_INGOT.getItemStack()), JobRank.Initie);
         List<ItemStack> ingredients = new ArrayList<ItemStack>(Arrays.asList(Items.SILVER_NUGGET.getItemStack(), Items.AMETHYSTE_SHARD.getItemStack()));
         wtf.setIngredients(ingredients);
         wtf.register();
