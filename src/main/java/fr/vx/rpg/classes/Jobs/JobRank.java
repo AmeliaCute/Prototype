@@ -19,7 +19,7 @@ public enum JobRank
 
     private JobRank(int lvlid, String name) { this.lvlind = lvlid;this.name = name; }
     static { for(JobRank id : values()) { ID_MAP.put(id.lvlind, id); } }
-    public static int getFromID(int id) {
+    public static int getFromNumber(int id) {
         JobRank i = ID_MAP.get(id); return i.getLvlId(); }
 
     public int getLvlId(){return lvlind;}

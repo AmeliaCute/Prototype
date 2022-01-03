@@ -2,10 +2,12 @@ package fr.vx.rpg.classes.Item.Tools;
 
 import fr.vx.rpg.RPG;
 
+import fr.vx.rpg.classes.Item.Attributes;
 import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -19,7 +21,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-public class Sword extends Item implements Listener
+public class Sword implements Listener
 {
     private Material tools;
     private String name;
@@ -28,37 +30,35 @@ public class Sword extends Item implements Listener
     private float attackSpeed;
     private EntityType monster;
     private boolean dropable;
+    private List<Attributes> attributes;
 
-    public Sword(Material tools, String name, Rarity rarity, float attackdamage, float attackSpeed)
+    public Sword(Material tools, String name, Rarity rarity, List<Attributes> attributes)
     {
-        super(tools, name, rarity, attackdamage);
         this.tools = tools;
         this.name = name;
         this.rarity = rarity;
-        this.attackdamage = attackdamage;
+        this.attributes = attributes;
     }
 
-    public Sword(Material tools, String name, Rarity rarity, float attackdamage, float attackSpeed, EntityType dropOn)
+    public Sword(Material tools, String name, Rarity rarity, List<Attributes> attributes, EntityType dropOn)
     {
-        super(tools, name, rarity, attackdamage);
         this.tools = tools;
         this.name = name;
         this.rarity = rarity;
-        this.attackdamage = attackdamage;
-        this.attackSpeed = attackSpeed;
+        this.attributes = attributes;
         this.monster = dropOn;
         this.dropable = true;
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
     }
 
-    @Override
     public ItemStack getItemStack()
     {
         ItemStack itemstack = new ItemStack(this.tools);
         ItemMeta itemMeta = itemstack.getItemMeta();
         itemMeta.setDisplayName(rarity.getColor()+name);
-        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", attackdamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
-        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", attackSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        for (int i = 0; i < attributes.size(); i++) {
+            itemMeta.addAttributeModifier(attributes.get(i).getAttribute(), new AttributeModifier(UUID.randomUUID(), "a", attributes.get(i).getNumber(), AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        }
         itemMeta.setLore(Arrays.asList("",rarity.getDescription()));
         itemstack.setItemMeta(itemMeta);
         return itemstack;

@@ -32,7 +32,7 @@ public class PaladinQuest implements Listener
         if(event.getEntity().getKiller() instanceof Player)
         {
             Player player = event.getEntity().getKiller().getPlayer();
-            if(!(Quest.getQuest(QuestId, player) == true))
+            if(!(Quest.getQuest(QuestId, player)))
             {
                 player.sendMessage(ChatColor.DARK_PURPLE+"◆ "+ChatColor.LIGHT_PURPLE+"Quête terminer ! "+ChatColor.WHITE+"("+name+")");
                 player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 3.0F, 0.5F);

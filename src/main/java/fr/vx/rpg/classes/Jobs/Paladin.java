@@ -27,7 +27,7 @@ public class Paladin
             PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `level_paladin` FROM `jobs` WHERE `uuid`= '" + player.getUniqueId().toString() + "' ");
             ResultSet rs = sts.executeQuery();
             if(rs.next()) {
-                joblvl = JobRank.getFromID(rs.getInt("level_paladin"));
+                joblvl = JobRank.getFromNumber(rs.getInt("level_paladin"));
             }
         } catch (SQLException e) { e.printStackTrace(); }
         return joblvl;

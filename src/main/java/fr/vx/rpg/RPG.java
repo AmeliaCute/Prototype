@@ -1,12 +1,13 @@
 package fr.vx.rpg;
 
 import fr.vx.rpg.classes.Crafting.CauldronCraft;
-import fr.vx.rpg.classes.Debug.spawn;
+import fr.vx.rpg.classes.Debug.RpgCmd;
 import fr.vx.rpg.classes.House.impl.Houses;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import fr.vx.rpg.classes.Jobs.JobEvent;
 import fr.vx.rpg.classes.Jobs.JobRank;
 import fr.vx.rpg.classes.Jobs.impl.jobs;
 import fr.vx.rpg.classes.Player.playerconnection;
@@ -34,14 +35,15 @@ public final class RPG extends JavaPlugin
         quests.register();
         jobs.Register();
 
-        CauldronCraft wtf = new CauldronCraft(new ItemStack(Items.SILVER_INGOT.getItemStack()), JobRank.Initie);
+        /*CauldronCraft wtf = new CauldronCraft(new ItemStack(Items.SILVER_SWORD.getItemStack()), JobRank.Initie);
         List<ItemStack> ingredients = new ArrayList<ItemStack>(Arrays.asList(Items.SILVER_NUGGET.getItemStack(), Items.AMETHYSTE_SHARD.getItemStack()));
         wtf.setIngredients(ingredients);
-        wtf.register();
+        wtf.register();*/
 
         pm.registerEvents(new playerconnection(this), this);
+        pm.registerEvents(new JobEvent(), this);
 
-        this.getCommand("spawn").setExecutor(new spawn());
+        this.getCommand("rpg").setExecutor(new RpgCmd());
     }
 
     @Override

@@ -1,13 +1,14 @@
 package fr.vx.rpg.classes.Jobs;
 
 import fr.vx.rpg.RPG;
-import fr.vx.rpg.classes.Item.Tools.Sword;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityInteractEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class JobItem implements Listener
@@ -24,25 +25,58 @@ public class JobItem implements Listener
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
     }
 
-    @EventHandler
-    public void onClick(EntityInteractEvent event)
-    {
-            if(event.getEntity() instanceof Player)
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onHurt(EntityDamageByEntityEvent event) {
+        Entity entity = event.getEntity();
+        LivingEntity livingEntity = (LivingEntity) event.getEntity();
+        if (event.getDamager() instanceof Player)
+        {
+            if(((Player) event.getDamager()).getPlayer().getInventory().getItemInMainHand() == itemStack)
             {
-                Player player = ((Player) event.getEntity()).getPlayer();
-                if(player.getItemInHand() == itemStack)
+                Player player = (Player) event.getDamager();
+                if(jobType.equals(JobType.PALADIN))
                 {
-                    if(jobType == JobType.MAGE && Wizard.getLvl(player) < lvl)
+                    if(Paladin.getLvl(player) < lvl)
                     {
-                        event.setCancelled(true);player.sendMessage(ChatColor.RED+"◆ Vous n'avez pas le niveau necessaire pour utilisez cette objet.. (Niveau requie: "+lvl+")");
-                    }
-                    if(jobType == JobType.PALADIN && Paladin.getLvl(player) < lvl)
-                    {
-                        event.setCancelled(true);player.sendMessage(ChatColor.RED+"◆ Vous n'avez pas le niveau necessaire pour utilisez cette objet.. (Niveau requie: "+lvl+")");
+                        event.setCancelled(true);
+                        livingEntity.setHealth(livingEntity.getMaxHealth());
+                        player.sendMessage(ChatColor.RED + "◆ " + ChatColor.LIGHT_PURPLE + "Vous n'avez pas le niveau pour utiliser cette objet.");
+                        return;
                     }
                 }
-            }
+                if(jobType.equals(JobType.BUCHERON))
+                {
+                    if(Paladin.getLvl(player) < lvl)
+                    {
+                        event.setCancelled(true);
+                        livingEntity.setHealth(livingEntity.getMaxHealth());
+                        player.sendMessage(ChatColor.RED + "◆ " + ChatColor.LIGHT_PURPLE + "Vous n'avez pas le niveau pour utiliser cette objet.");
+                        return;
+                    }
+                }
+                if(jobType.equals(JobType.MAGE))
+                {
+                    if(Wizard.getLvl(player) < lvl)
+                    {
+                        event.setCancelled(true);
+                        livingEntity.setHealth(livingEntity.getMaxHealth());
+                        player.sendMessage(ChatColor.RED + "◆ " + ChatColor.LIGHT_PURPLE + "Vous n'avez pas le niveau pour utiliser cette objet.");
+                        return;
+                    }
+                }
+                if(jobType.equals(JobType.FORGERON))
+                {
+                    if(Paladin.getLvl(player) < lvl)
+                    {
+                        event.setCancelled(true);
+                        livingEntity.setHealth(livingEntity.getMaxHealth());
+                        player.sendMessage(ChatColor.RED + "◆ " + ChatColor.LIGHT_PURPLE + "Vous n'avez pas le niveau pour utiliser cette objet.");
+                        return;
+                    }
+                }
+            }else return;
+        }
     }
 
-    public enum JobType {FORGERON(), MAGE(), PALADIN(), ;private JobType() {}}
+    public enum JobType {FORGERON(), MAGE(), PALADIN(),BUCHERON, MINEUR, ;private JobType() {}}
 }
