@@ -11,4 +11,8 @@
 1. [Map: Ville 1.1](https://cdn.discordapp.com/attachments/538082225099636737/913513650390695936/New_World.rar)
 2. [Map: Ville 1.2](https://cdn.discordapp.com/attachments/538082225099636737/914368277021610044/world.rar)
 
+#### Fichiers inutilisés:
+
+1. [Map 0.1](https://www.mediafire.com/file/2aiki2ojglumfvk/world.rar/file)
+
 ###### Aucun fork ou copie du plugin est autorisé pour le moment.
