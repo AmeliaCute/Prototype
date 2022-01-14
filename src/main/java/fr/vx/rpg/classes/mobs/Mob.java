@@ -11,6 +11,8 @@ import org.bukkit.inventory.EntityEquipment;
 
 public class Mob extends EntityCreature implements Listener
 {
+    private String name;
+
     public Mob(EntityTypes entitytypes, Location location) {
         super(entitytypes, ((CraftWorld) location.getWorld()).getHandle());
         this.setLocation(location.getX(), location.getY(), location.getZ(), -90, 0);
@@ -19,6 +21,7 @@ public class Mob extends EntityCreature implements Listener
     public void setData(LivingEntity entity, String name, float heart, MobEquipment mobEquipment, Tiers tiers)
     {
         entity.setCustomName(tiers.getColor()+name);
+        this.name = entity.getCustomName();
         entity.setCustomNameVisible(true);
 
         EntityEquipment equip = entity.getEquipment();
@@ -36,6 +39,7 @@ public class Mob extends EntityCreature implements Listener
     public void setData(LivingEntity entity, String name, float heart, Tiers tiers)
     {
         entity.setCustomName(tiers.getColor()+name);
+        this.name = entity.getCustomName();
         entity.setCustomNameVisible(true);
 
         AttributeInstance healthAttribute = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
@@ -55,5 +59,10 @@ public class Mob extends EntityCreature implements Listener
 
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this));
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget<EntityHuman>(this, EntityHuman.class, true));
+    }
+
+    public String getName()
+    {
+        return name;
     }
 }

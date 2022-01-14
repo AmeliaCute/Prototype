@@ -3,6 +3,7 @@ package fr.vx.rpg.classes.Item;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -92,15 +93,14 @@ public class Item {
 		
 		ItemStack item = new ItemStack(material);
 		ItemMeta itemMeta = item.getItemMeta();
-		itemMeta.setDisplayName(rarity.getColor()+name);
-		itemMeta.setLore(Arrays.asList("", description));
+		itemMeta.setDisplayName(rarity.getColor() + name);
+		itemMeta.setLore(Arrays.asList("",rarity.getDescription(), ChatColor.GOLD+""+basePrice+" pieces"));
 		
 		if (enchanted) {
 			
 			for (int i = 0; i < enchants.size(); i++) {
 				
 				itemMeta.addEnchant(enchants.get(i), enchantsLvl.get(i), true);
-				
 			}
 		}
 		

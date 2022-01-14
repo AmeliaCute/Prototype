@@ -9,8 +9,8 @@ public enum Rarity {
 	UNCOMMON("§2Peu Commun.", ChatColor.DARK_GREEN),
 	RARE("§bRare.", ChatColor.AQUA),
 	VERY_RARE("§1✫", ChatColor.BLUE),
-	EPIC("§d✫✫", ChatColor.LIGHT_PURPLE),
-	LEGENDARY("§5✫✫✫", ChatColor.DARK_PURPLE);
+	EPIC("§d✫✫", ChatColor.DARK_PURPLE),
+	LEGENDARY("§5✫✫✫", ChatColor.LIGHT_PURPLE);
 	
 	private final String description;
 	private final ChatColor color;
