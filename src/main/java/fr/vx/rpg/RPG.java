@@ -10,6 +10,7 @@ import fr.vx.rpg.classes.Npc.impl.citizens;
 import fr.vx.rpg.classes.Npc.npc;
 import fr.vx.rpg.classes.Player.playerconnection;
 import fr.vx.rpg.classes.Quests.impl.quests;
+import fr.vx.rpg.handlers.SpawnRunnable;
 import fr.vx.rpg.utils.MySql;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -38,7 +39,9 @@ public final class RPG extends JavaPlugin
         quests.register();
         jobs.Register();
         citizens.register();
-
+        
+        //TODO à tester
+        //new SpawnRunnable().runTaskTimer(this, 0, 200);
         CauldronCraft wtf = new CauldronCraft(new ItemStack(Items.test2.getItemStack()), JobRank.Novice);
         List<ItemStack> ingredients = new ArrayList<ItemStack>(Arrays.asList(new ItemStack(Material.IRON_INGOT), new ItemStack(Material.STICK)));
         wtf.setIngredients(ingredients);
