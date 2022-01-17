@@ -1,6 +1,7 @@
 package fr.vx.rpg.classes.Debug;
 
 import fr.vx.rpg.classes.Item.impl.Items;
+import fr.vx.rpg.classes.Npc.npc;
 import fr.vx.rpg.classes.mobs.impl.Larbin;
 import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.Bukkit;
@@ -32,10 +33,11 @@ public class RpgCmd implements CommandExecutor {
                     world.addEntity(new Larbin(player.getLocation()));
                     break;
                 case "Give":
-                    Gui(1);
-                    break;
                 case "give":
                     Gui(1);
+                    break;
+                case "npcremove":
+                    npc.RemoveAllNpc();
                     break;
                 default:
                     player.sendMessage(ChatColor.RED+"Vous avez besoin d'un argument. (Mobs / Give)");

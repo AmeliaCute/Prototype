@@ -24,7 +24,16 @@ public class playerconnection implements Listener
         Job.CreateAccount(event.getPlayer());
         Quest.CreateAccount(event.getPlayer());
 
-        if(npc.getNpcList() ==null || npc.getNpcList().isEmpty()) {return;}
-        npc.addJoinPackets(event.getPlayer());
+        if(npc.getNpcList() !=null)
+        {
+            if(!npc.getNpcList().isEmpty())
+            {
+                npc.addJoinPackets(event.getPlayer());
+                for(int i = 1; i < npc.getNpcList().size(); i++)
+                {
+                    npc.addNPCPackets(npc.getNpcList().get(i));
+                }
+            }
+        }
     }
 }

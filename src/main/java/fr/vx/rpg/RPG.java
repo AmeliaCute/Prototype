@@ -40,8 +40,8 @@ public final class RPG extends JavaPlugin
         jobs.Register();
         citizens.register();
         
-        //TODO à tester
-        //new SpawnRunnable().runTaskTimer(this, 0, 200);
+        //TODO tester
+        new SpawnRunnable().runTaskTimer(this, 0, 200);
         CauldronCraft wtf = new CauldronCraft(new ItemStack(Items.test2.getItemStack()), JobRank.Novice);
         List<ItemStack> ingredients = new ArrayList<ItemStack>(Arrays.asList(new ItemStack(Material.IRON_INGOT), new ItemStack(Material.STICK)));
         wtf.setIngredients(ingredients);

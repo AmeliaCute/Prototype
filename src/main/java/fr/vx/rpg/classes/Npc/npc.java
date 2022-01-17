@@ -11,7 +11,6 @@ import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,15 +20,18 @@ public class npc implements Listener
     private static List<EntityPlayer> npcList = new ArrayList<EntityPlayer>();
     private static WorldServer world;
 
-    public npc(String name, String skin ,Location location)
+    public npc(String name, String skinValue, String skinSignature ,Location location)
     {
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) location.getWorld()).getHandle();
         GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.BOLD+name);
+        gameProfile.getProperties().removeAll("textures");
+        gameProfile.getProperties().put("textures", new Property("textures", skinValue, skinSignature));
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile, new PlayerInteractManager(world));
-        gameProfile.getProperties().put("textures", new Property("textures", Base64Coder.encodeString("{textures:{SKIN:{url:\"" + skin + "\"}}}")));
-        npc.setLocation(location.getX(),location.getY(),location.getZ(), 0, 90);
+        npc.setLocation(location.getX(),location.getY(),location.getZ(), 90, 0);
+        npc.getDataWatcher().set(new DataWatcherObject<>(16, DataWatcherRegistry.a), (byte)127);
         npc.isCreative();
+
         npcList.add(npc);
 
         this.world = world;
@@ -43,6 +45,7 @@ public class npc implements Listener
             PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
             connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
             connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
+            connection.sendPacket(new PacketPlayOutEntityMetadata(npc.getId(), npc.getDataWatcher(), true));
             connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) (npc.yaw * 256 / 360)));
         }
     }
@@ -54,6 +57,7 @@ public class npc implements Listener
             PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
             connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
             connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
+            connection.sendPacket(new PacketPlayOutEntityMetadata(npc.getId(), npc.getDataWatcher(), true));
             connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) (npc.yaw * 256 / 360)));
         }
     }
@@ -62,10 +66,20 @@ public class npc implements Listener
 
     public static void RemoveAllNpc()
     {
-        for(int i = npcList.size(); i > 0; i--)
+        for(int i = 1; i < npcList.size(); i++)
         {
             world.removeEntity(npcList.get(i));
+            removeNPCPacket(npcList.get(i));
             npcList.remove(i);
+        }
+    }
+
+    public static void removeNPCPacket(EntityPlayer npc) {
+        for(Player player : Bukkit.getOnlinePlayers())
+        {
+            PlayerConnection connection = ((CraftPlayer)player).getHandle().playerConnection;
+            connection.sendPacket(new PacketPlayOutEntityDestroy(npc.getId()));
+            connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, npc));
         }
     }
 
