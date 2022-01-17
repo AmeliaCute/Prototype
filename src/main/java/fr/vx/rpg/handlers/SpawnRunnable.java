@@ -3,6 +3,7 @@ package fr.vx.rpg.handlers;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Monster;
@@ -26,9 +27,6 @@ public class SpawnRunnable extends BukkitRunnable {
 				
 				for (int y = -129; y < 129 && !stopCheck; y++) {
 					
-					if (y <= 24 && y >= -24)
-						continue;
-					
 					for (int z = -128; z < 129 && !stopCheck; z++) {
 						
 						if (z <= 24 && z >= -24)
@@ -51,8 +49,17 @@ public class SpawnRunnable extends BukkitRunnable {
 							 		break;
 							 	}
 							 	
-							 	player.getWorld().spawnEntity(location, EntityType.BLAZE);
-
+							 	int randX = (int)(Math.random() * 8);
+							 	int randZ = (int)(Math.random() * 8);
+							 	Location randUpPos = location.clone().add(x, y + 1, z);
+							 	Location randPos = new Location(player.getWorld(), randX, y, randZ);
+							 	Location randDownPos = location.clone().add(x, y - 1, z);
+							 	while (randUpPos.getBlock().getType() != Material.AIR || randPos.getBlock().getType() != Material.AIR || randDownPos.getBlock().getType() == Material.AIR) {
+								 	randUpPos = location.clone().add(x, y + 1, z);
+								 	randPos = new Location(player.getWorld(), randX, y, randZ);
+								 	randDownPos = location.clone().add(x, y - 1, z);
+							 	}
+							 	player.getWorld().spawnEntity(randPos, EntityType.BLAZE);
 							 	
 						}
 						
