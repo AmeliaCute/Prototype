@@ -15,6 +15,8 @@ public abstract class Spell {
 	
 	public abstract String getDescription();
 	
+	public abstract int getWizardLvlRequired();
+	
 	protected abstract boolean action(Player player, int tick);
 	
 	public void send(Player player) {

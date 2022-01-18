@@ -1,6 +1,5 @@
 package fr.vx.rpg.classes.Spell.impl;
 
-import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
@@ -26,8 +25,14 @@ public class FireballSpell extends Spell {
 	@Override
 	protected boolean action(Player player, int tick) {
 		
+		//TODO Peut être pas optimal, à voir
 		player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREBALL);
 		return true;
+	}
+
+	@Override
+	public int getWizardLvlRequired() {
+		return 3;
 	}
 
 }
