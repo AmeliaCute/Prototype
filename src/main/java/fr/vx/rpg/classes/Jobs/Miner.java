@@ -13,7 +13,9 @@ public class Miner
     public static void setLvl(Player player, JobRank jobRank)
     {
         try {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `level_miner`= '" + jobRank.getLvlId() + "' WHERE `uuid`='" + player.getUniqueId().toString() +"'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `level_miner`= '?' WHERE `uuid`='?'");
+            sts.setInt(1, jobRank.getLvlId());
+            sts.setString(2, player.getUniqueId().toString());
             sts.executeUpdate();
             sts.close();
         } catch (SQLException e) { e.printStackTrace(); }
@@ -24,8 +26,9 @@ public class Miner
         int joblvl = 0;
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `level_miner` FROM `jobs` WHERE `uuid`= '" + player.getUniqueId().toString() + "' ");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `level_miner` FROM `jobs` WHERE `uuid`= '?'");
             ResultSet rs = sts.executeQuery();
+            sts.setString(1, player.getUniqueId().toString());
             if(rs.next()) {
                 joblvl = JobRank.getFromNumber(rs.getInt("level_miner"));
             }
@@ -38,7 +41,9 @@ public class Miner
         int result = SqlMath.Addition(xp,getXp(player));
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `exp_miner`= '" +result+"' WHERE `uuid`='" + player.getUniqueId().toString() +"'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `exp_miner`= '?' WHERE `uuid`='?'");
+            sts.setInt(1, result);
+            sts.setString(2, player.getUniqueId().toString());
             sts.executeUpdate();
             sts.close();
         }
@@ -53,8 +58,9 @@ public class Miner
         int xp = 0;
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `exp_miner` FROM `jobs` WHERE `uuid`= '" + player.getUniqueId().toString() + "' ");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `exp_miner` FROM `jobs` WHERE `uuid`= '?'");
             ResultSet rs = sts.executeQuery();
+            sts.setString(1, player.getUniqueId().toString());
             if(rs.next())
             {
                 xp = rs.getInt("exp_miner");

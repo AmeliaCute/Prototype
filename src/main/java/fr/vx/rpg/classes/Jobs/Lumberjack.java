@@ -12,7 +12,9 @@ public class Lumberjack
     public static void setLvl(Player player, JobRank jobRank)
     {
         try {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `level_lumberjack`= '" + jobRank.getLvlId() + "' WHERE `uuid`='" + player.getUniqueId().toString() +"'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `level_lumberjack`= '?' WHERE `uuid`= '?'");
+            sts.setInt(1, jobRank.getLvlId());
+            sts.setString(2, player.getUniqueId().toString());
             sts.executeUpdate();
             sts.close();
         } catch (SQLException e) { e.printStackTrace(); }
@@ -23,7 +25,8 @@ public class Lumberjack
         int joblvl = 0;
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `level_lumberjack` FROM `jobs` WHERE `uuid`= '" + player.getUniqueId().toString() + "' ");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `level_lumberjack` FROM `jobs` WHERE `uuid`= '?'");
+            sts.setString(1, player.getUniqueId().toString());
             ResultSet rs = sts.executeQuery();
             if(rs.next()) {
                 joblvl = JobRank.getFromNumber(rs.getInt("level_lumberjack"));
@@ -37,7 +40,9 @@ public class Lumberjack
         int result = xp+getXp(player);
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `exp_lumberjack`= '" +result+"' WHERE `uuid`='" + player.getUniqueId().toString() +"'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `exp_lumberjack`= '?' WHERE `uuid`='?'");
+            sts.setInt(1, result);
+            sts.setString(2, player.getUniqueId().toString());
             sts.executeUpdate();
             sts.close();
         }
@@ -52,7 +57,8 @@ public class Lumberjack
         int xp = 0;
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `exp_lumberjack` FROM `jobs` WHERE `uuid`= '" + player.getUniqueId().toString() + "' ");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `exp_lumberjack` FROM `jobs` WHERE `uuid`= '?'");
+            sts.setString(1, player.getUniqueId().toString());
             ResultSet rs = sts.executeQuery();
             if(rs.next())
             {
