@@ -1,6 +1,6 @@
 package fr.vx.rpg.utils;
 
-public class SqlMath
+public class Math //(For MySql)
 {
     public static int Addition(int a, int b)
     {

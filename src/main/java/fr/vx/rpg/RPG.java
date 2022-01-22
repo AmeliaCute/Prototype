@@ -12,8 +12,10 @@ import fr.vx.rpg.classes.Player.playerconnection;
 import fr.vx.rpg.classes.Quests.impl.quests;
 import fr.vx.rpg.handlers.SpawnRunnable;
 import fr.vx.rpg.utils.MySql;
+import fr.vx.rpg.utils.PacketsReader;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,7 +40,16 @@ public final class RPG extends JavaPlugin
         Houses.Register();
         quests.register();
         jobs.Register();
+
         citizens.register();
+        if(!Bukkit.getOnlinePlayers().isEmpty())
+        {
+            for(Player player : Bukkit.getOnlinePlayers())
+            {
+                PacketsReader reader = new PacketsReader();
+                reader.inject(player);
+            }
+        }
         
         //TODO tester
         new SpawnRunnable().runTaskTimer(this, 0, 200);
@@ -56,6 +67,15 @@ public final class RPG extends JavaPlugin
     public void onDisable()
     {
         mySql.disconnect();
+
+        if(!Bukkit.getOnlinePlayers().isEmpty())
+        {
+            for(Player player : Bukkit.getOnlinePlayers())
+            {
+                PacketsReader reader = new PacketsReader();
+                reader.uninject(player);
+            }
+        }
         npc.RemoveAllNpc();
     }
 

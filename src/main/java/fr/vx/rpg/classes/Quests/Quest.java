@@ -1,7 +1,7 @@
 package fr.vx.rpg.classes.Quests;
 
 import fr.vx.rpg.utils.MySql;
-import fr.vx.rpg.utils.SqlMath;
+import fr.vx.rpg.utils.Math;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -69,7 +69,7 @@ public class Quest
     {
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `quest` SET `?_ad` = '"+ SqlMath.Addition(getAdvancement(id, player), 1) +"' WHERE `uuid`= '?'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `quest` SET `?_ad` = '"+ Math.Addition(getAdvancement(id, player), 1) +"' WHERE `uuid`= '?'");
             sts.setString(1, id);
             sts.setString(2, player.getUniqueId().toString());
         } catch (SQLException e) {
