@@ -12,12 +12,12 @@ public class Job
     public static void CreateAccount(Player player)
     {
         try {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `name` FROM `jobs` WHERE `uuid`='?'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `name` FROM `jobs` WHERE `uuid`=?");
             sts.setString(1, player.getUniqueId().toString());
             ResultSet rs = sts.executeQuery();
             if(!rs.next()) {
                 sts.close();
-                sts = MySql.getConnection().prepareStatement("INSERT INTO `jobs` (uuid, name) VALUES ('?', '?')");
+                sts = MySql.getConnection().prepareStatement("INSERT INTO `jobs` (uuid, name) VALUES (?, ?)");
                 sts.setString(1, player.getUniqueId().toString());
                 sts.setString(2, player.getName());
                 sts.executeUpdate();

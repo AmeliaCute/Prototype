@@ -13,7 +13,7 @@ public class Miner
     public static void setLvl(Player player, JobRank jobRank)
     {
         try {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `level_miner`= '?' WHERE `uuid`='?'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `level_miner`= ? WHERE `uuid`=?");
             sts.setInt(1, jobRank.getLvlId());
             sts.setString(2, player.getUniqueId().toString());
             sts.executeUpdate();
@@ -26,7 +26,7 @@ public class Miner
         int joblvl = 0;
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `level_miner` FROM `jobs` WHERE `uuid`= '?'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `level_miner` FROM `jobs` WHERE `uuid`= ?");
             ResultSet rs = sts.executeQuery();
             sts.setString(1, player.getUniqueId().toString());
             if(rs.next()) {
@@ -41,7 +41,7 @@ public class Miner
         int result = Math.Addition(xp,getXp(player));
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `exp_miner`= '?' WHERE `uuid`='?'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `exp_miner`= ? WHERE `uuid`=?");
             sts.setInt(1, result);
             sts.setString(2, player.getUniqueId().toString());
             sts.executeUpdate();
@@ -58,7 +58,7 @@ public class Miner
         int xp = 0;
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `exp_miner` FROM `jobs` WHERE `uuid`= '?'");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `exp_miner` FROM `jobs` WHERE `uuid`= ?");
             ResultSet rs = sts.executeQuery();
             sts.setString(1, player.getUniqueId().toString());
             if(rs.next())
