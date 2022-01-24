@@ -16,7 +16,7 @@ public class Quest
     {
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `welcome` FROM `quest` WHERE `uuid`=?");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT `welcome` FROM `quest` WHERE `uuid` = ?");
             sts.setString(1, player.getUniqueId().toString());
             ResultSet rs = sts.executeQuery();
             if(!rs.next())
@@ -37,7 +37,7 @@ public class Quest
         int res = 0;
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT ? FROM `quest` WHERE `uuid`=?");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT ? FROM `quest` WHERE `uuid` = ?");
             sts.setString(1, id);
             sts.setString(2, player.getUniqueId().toString());
             ResultSet rs = sts.executeQuery();
@@ -55,7 +55,7 @@ public class Quest
     {
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `quest` SET ?= 1 WHERE `uuid`= ?");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `quest` SET ? = 1 WHERE `uuid` = ?");
             sts.setString(1, id);
             sts.setString(2, player.getUniqueId().toString());
             sts.executeUpdate();
@@ -69,9 +69,10 @@ public class Quest
     {
         try
         {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `quest` SET ? = "+ Math.Addition(getAdvancement(id, player), 1) +" WHERE `uuid`= ?");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `quest` SET ? = ? WHERE `uuid`= ?");
             sts.setString(1, id);
-            sts.setString(2, player.getUniqueId().toString());
+            sts.setInt(2, Math.Addition(getAdvancement(id, player), 1));
+            sts.setString(3, player.getUniqueId().toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -81,7 +82,7 @@ public class Quest
     {
         int res = 0;
         try {
-            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT ? FROM `quest` WHERE `uuid`=?");
+            PreparedStatement sts = MySql.getConnection().prepareStatement("SELECT ? FROM `quest` WHERE `uuid`= ?");
             sts.setString(1, id);
             sts.setString(2, player.getUniqueId().toString());
             ResultSet rs = sts.executeQuery();
