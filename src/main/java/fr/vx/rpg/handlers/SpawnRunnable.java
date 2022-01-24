@@ -54,7 +54,7 @@ public class SpawnRunnable extends BukkitRunnable {
 							 	Location randUpPos = location.clone().add(x, y + 1, z);
 							 	Location randPos = new Location(player.getWorld(), randX, y, randZ);
 							 	Location randDownPos = location.clone().add(x, y - 1, z);
-							 	while (randUpPos.getBlock().getType() != Material.AIR || randPos.getBlock().getType() != Material.AIR || randDownPos.getBlock().getType() == Material.AIR) {
+							 	while (randUpPos.getBlock().getType() != Material.AIR && randPos.getBlock().getType() != Material.AIR && randDownPos.getBlock().getType() == Material.AIR) {
 								 	randUpPos = location.clone().add(x, y + 1, z);
 								 	randPos = new Location(player.getWorld(), randX, y, randZ);
 								 	randDownPos = location.clone().add(x, y - 1, z);
