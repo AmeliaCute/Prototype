@@ -26,12 +26,12 @@ public class NpcRightClicked extends Event implements Cancellable
 
     public EntityPlayer getRightClicked() {return entityPlayer;}
 
-    public String getName() { return entityPlayer.getDisplayName().toString();}
+    public String getName() { return entityPlayer.getName();}
 
     @Override
     public HandlerList getHandlers() {return HANDLER_LIST;}
 
-    public static HandlerList getHandlersList() {return HANDLER_LIST;}
+    public static HandlerList getHandlerList() {return HANDLER_LIST;}
 
     @Override
     public boolean isCancelled() {return isCancelled;}

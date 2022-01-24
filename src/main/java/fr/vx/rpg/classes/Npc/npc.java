@@ -24,14 +24,12 @@ public class npc implements Listener
     {
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) location.getWorld()).getHandle();
-        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.BOLD+name);
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), name);
         gameProfile.getProperties().removeAll("textures");
         gameProfile.getProperties().put("textures", new Property("textures", skinValue, skinSignature));
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile, new PlayerInteractManager(world));
         npc.setLocation(location.getX(),location.getY(),location.getZ(), 90, 0);
         npc.getDataWatcher().set(new DataWatcherObject<>(16, DataWatcherRegistry.a), (byte)127);
-        npc.isCreative();
-
         npcList.add(npc);
 
         this.world = world;

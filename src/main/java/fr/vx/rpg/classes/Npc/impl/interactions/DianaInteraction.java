@@ -1,6 +1,7 @@
 package fr.vx.rpg.classes.Npc.impl.interactions;
 
 import fr.vx.rpg.classes.House.History.HistoryBranch;
+import fr.vx.rpg.classes.Npc.Events.NpcRightClicked;
 import fr.vx.rpg.classes.Npc.NpcInteraction;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -20,7 +21,7 @@ public class DianaInteraction extends NpcInteraction
 
     @Override
     public String NameOfNpc() {
-        return ChatColor.BOLD+"Diana";
+        return "Diana";
     }
 
     @Override

@@ -19,7 +19,7 @@ public class playerconnection implements Listener
     @EventHandler
     public void onConnection(PlayerJoinEvent event)
     {
-        if(Quest.getQuest("welcome", event.getPlayer()) == 0)
+        if(!event.getPlayer().hasPlayedBefore())
         {
             Quest.finishedQuestMessage("Un nouveau monde!", event.getPlayer());
         }

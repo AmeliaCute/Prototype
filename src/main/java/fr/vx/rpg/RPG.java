@@ -6,6 +6,8 @@ import fr.vx.rpg.classes.House.impl.Houses;
 
 import fr.vx.rpg.classes.Jobs.JobRank;
 import fr.vx.rpg.classes.Jobs.impl.jobs;
+import fr.vx.rpg.classes.Npc.NpcInteraction;
+import fr.vx.rpg.classes.Npc.NpcInteractionEvent;
 import fr.vx.rpg.classes.Npc.impl.citizens;
 import fr.vx.rpg.classes.Npc.npc;
 import fr.vx.rpg.classes.Player.playerconnection;
@@ -59,6 +61,7 @@ public final class RPG extends JavaPlugin
         wtf.register();
 
         pm.registerEvents(new playerconnection(), this);
+        pm.registerEvents(new NpcInteractionEvent(), this);
 
         this.getCommand("rpg").setExecutor(new RpgCmd());
     }

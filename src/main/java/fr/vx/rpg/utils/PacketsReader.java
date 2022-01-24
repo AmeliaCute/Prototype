@@ -11,6 +11,7 @@ import net.minecraft.server.v1_16_R3.Packet;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -53,7 +54,7 @@ public class PacketsReader
 
     public void readPacket(Player player, Packet<?> packet)
     {
-        System.out.println("Debug: Packet:"+packet);
+        //System.out.println("Debug: Packet:"+packet);
         if(packet.getClass().getSimpleName().equalsIgnoreCase("PacketPlayInUseEntity"))
         {
             if(getValue(packet, "action").toString().equalsIgnoreCase("ATTACK")) {return;}
@@ -67,7 +68,12 @@ public class PacketsReader
                 {
                     if(entityPlayer.getId() == id)
                     {
-                        Bukkit.getPluginManager().callEvent(new NpcRightClicked(player, entityPlayer));
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Bukkit.getPluginManager().callEvent(new NpcRightClicked(player, entityPlayer));
+                            }
+                        };
                     }
                 }
             }
