@@ -2,22 +2,20 @@ package fr.vx.rpg.classes.Npc;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import fr.vx.rpg.RPG;
 import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class npc implements Listener
 {
-    private static List<EntityPlayer> npcList = new ArrayList<EntityPlayer>();
     private static WorldServer world;
 
     public npc(String name, String skinValue, String skinSignature ,Location location)
@@ -28,9 +26,10 @@ public class npc implements Listener
         gameProfile.getProperties().removeAll("textures");
         gameProfile.getProperties().put("textures", new Property("textures", skinValue, skinSignature));
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile, new PlayerInteractManager(world));
+        RPG.npcList.add(npc);
+
         npc.setLocation(location.getX(),location.getY(),location.getZ(), 90, 0);
         npc.getDataWatcher().set(new DataWatcherObject<>(16, DataWatcherRegistry.a), (byte)127);
-        npcList.add(npc);
 
         this.world = world;
         addNPCPackets(npc);
@@ -50,7 +49,7 @@ public class npc implements Listener
 
     public static void addJoinPackets(Player player)
     {
-        for(EntityPlayer npc : npcList)
+        for(EntityPlayer npc : RPG.npcList)
         {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
             connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
@@ -60,15 +59,15 @@ public class npc implements Listener
         }
     }
 
-    public static List<EntityPlayer> getNpcList()  {return npcList;}
+    public static List<EntityPlayer> getNpcList()  {return RPG.npcList;}
 
     public static void RemoveAllNpc()
     {
-        for(int i = 1; i < npcList.size(); i++)
+        for(int i = 1; i < RPG.npcList.size(); i++)
         {
-            world.removeEntity(npcList.get(i));
-            removeNPCPacket(npcList.get(i));
-            npcList.remove(i);
+            world.removeEntity(RPG.npcList.get(i));
+            removeNPCPacket(RPG.npcList.get(i));
+            RPG.npcList.remove(i);
         }
     }
 

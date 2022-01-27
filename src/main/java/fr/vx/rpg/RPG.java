@@ -15,6 +15,7 @@ import fr.vx.rpg.classes.Quests.impl.quests;
 import fr.vx.rpg.handlers.SpawnRunnable;
 import fr.vx.rpg.utils.MySql;
 import fr.vx.rpg.utils.PacketsReader;
+import net.minecraft.server.v1_16_R3.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -30,6 +31,7 @@ import java.util.List;
 public final class RPG extends JavaPlugin
 {
 
+    public static List<EntityPlayer> npcList = new ArrayList<EntityPlayer>();
     public MySql mySql = new MySql();
 
     @Override

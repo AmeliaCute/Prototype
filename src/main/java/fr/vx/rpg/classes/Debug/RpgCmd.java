@@ -39,10 +39,32 @@ public class RpgCmd implements CommandExecutor {
                 case "npcremove":
                     npc.RemoveAllNpc();
                     break;
+                case "npcs":
+                    if(npc.getNpcList().isEmpty())
+                    {
+                        Bukkit.broadcastMessage("Aucun npc n'est enregistrez.");
+                    }
+                    for(int i = 0; i < npc.getNpcList().size(); i++)
+                    {
+                        Bukkit.broadcastMessage(i+" - "+npc.getNpcList().get(i).getName());
+                    }
                 default:
                     player.sendMessage(ChatColor.RED+"Vous avez besoin d'un argument. (Mobs / Give)");
                     break;
             }
+        }
+        switch(args[0])
+        {
+            case "npcs":
+                if(npc.getNpcList().isEmpty())
+                {
+                    Bukkit.broadcastMessage("Aucun npc n'est enregistrez.");
+                }
+                for(int i = 0; i < npc.getNpcList().size(); i++)
+                {
+                    Bukkit.broadcastMessage(i+" - "+npc.getNpcList().get(i).getName());
+                }
+                break;
         }
         return false;
     }

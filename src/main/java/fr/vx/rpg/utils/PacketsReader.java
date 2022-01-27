@@ -54,6 +54,7 @@ public class PacketsReader
 
     public void readPacket(Player player, Packet<?> packet)
     {
+        // \/ - A activer seulement pour debug (Tres laggy)
         //System.out.println("Debug: Packet:"+packet);
         if(packet.getClass().getSimpleName().equalsIgnoreCase("PacketPlayInUseEntity"))
         {
@@ -64,13 +65,14 @@ public class PacketsReader
             int id = (int) getValue(packet, "a");
             if(getValue(packet,"action").toString().equalsIgnoreCase("INTERACT"))
             {
-                for(EntityPlayer entityPlayer : npc.getNpcList())
+                for(EntityPlayer entityPlayer : RPG.npcList)
                 {
-                    if(entityPlayer.getId() == id)
+                   if(entityPlayer.getId() == id)
                     {
                         new BukkitRunnable() {
                             @Override
                             public void run() {
+
                                 Bukkit.getPluginManager().callEvent(new NpcRightClicked(player, entityPlayer));
                             }
                         };
