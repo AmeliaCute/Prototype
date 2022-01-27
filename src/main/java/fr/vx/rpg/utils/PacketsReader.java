@@ -12,6 +12,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -68,14 +69,14 @@ public class PacketsReader
                 for(EntityPlayer entityPlayer : RPG.npcList)
                 {
                    if(entityPlayer.getId() == id)
-                    {
-                        new BukkitRunnable() {
-                            @Override
-                            public void run() {
-
-                                Bukkit.getPluginManager().callEvent(new NpcRightClicked(player, entityPlayer));
-                            }
-                        };
+                    {	
+                	   BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+                       scheduler.scheduleSyncDelayedTask(RPG.getPlugin(RPG.class), new Runnable() {
+                           @Override
+                           public void run() {
+                        	   Bukkit.getPluginManager().callEvent(new NpcRightClicked(player, entityPlayer));
+                           }
+                       }, 20L);
                     }
                 }
             }
