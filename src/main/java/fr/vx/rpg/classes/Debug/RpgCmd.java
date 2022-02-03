@@ -1,87 +1,68 @@
 package fr.vx.rpg.classes.Debug;
 
+import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.impl.Items;
-import fr.vx.rpg.classes.Npc.npc;
 import fr.vx.rpg.classes.mobs.impl.Larbin;
 import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
-public class RpgCmd implements CommandExecutor {
-
-    private Player player;
+public class RpgCmd implements CommandExecutor{
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         if(sender instanceof Player)
         {
-            Player player = (Player) sender;
-            this.player = player;
-            switch(args[0])
+            Player player = ((Player) sender).getPlayer();
+            if(args.length == 1)
             {
-                case "Mobs":
-                    WorldServer world = ((CraftWorld) player.getWorld()).getHandle();
-                    world.addEntity(new Larbin(player.getLocation()));
-                    break;
-                case "Give":
-                case "give":
-                    Gui(1);
-                    break;
-                case "npcremove":
-                    npc.RemoveAllNpc();
-                    break;
-                case "npcs":
-                    if(npc.getNpcList().isEmpty())
+                if(args[0].equalsIgnoreCase("help"))
+                {
+                    player.sendMessage("Jsp");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("mob"))
+                {
+                    player.sendMessage("Argument invalide.");
+                    player.sendMessage("Arg: LARBIN");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("give"))
+                {
+                    Inventory a = Bukkit.createInventory(null, 6*9);
+
+                    for(int i = 0; i < Items.items.size(); i++)
                     {
-                        Bukkit.broadcastMessage("Aucun npc n'est enregistrez.");
+                        a.addItem(Items.items.get(i));
                     }
-                    for(int i = 0; i < npc.getNpcList().size(); i++)
+                    player.openInventory(a);
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("version"))
+                {
+                    player.sendMessage("Version: 1.3.6.2");
+                    player.sendMessage("Date du build: 3/2/2022 a 8:36");
+                }
+            }
+            if(args.length == 2)
+            {
+                if(args[0].equalsIgnoreCase("mob"))
+                {
+                    if(args[1].equalsIgnoreCase("LARBIN"))
                     {
-                        Bukkit.broadcastMessage(i+" - "+npc.getNpcList().get(i).getName());
+                        WorldServer world = ((CraftWorld) player.getWorld()).getHandle();
+                        world.addEntity(new Larbin(player.getLocation()));
+                        return true;
                     }
-                default:
-                    player.sendMessage(ChatColor.RED+"Vous avez besoin d'un argument. (Mobs / Give)");
-                    break;
+                }
             }
         }
-        switch(args[0])
-        {
-            case "npcs":
-                if(npc.getNpcList().isEmpty())
-                {
-                    Bukkit.broadcastMessage("Aucun npc n'est enregistrez.");
-                }
-                for(int i = 0; i < npc.getNpcList().size(); i++)
-                {
-                    Bukkit.broadcastMessage(i+" - "+npc.getNpcList().get(i).getName());
-                }
-                break;
-        }
         return false;
-    }
-
-    private void Gui(int id)
-    {
-        Inventory a = Bukkit.createInventory(null, 6*9);
-        switch(id)
-        {
-            case 1:
-                a.addItem(Items.test.getItemStack());
-                a.addItem(Items.test2.getItemStack());
-                a.addItem(Items.test3.getItemStack());
-                player.openInventory(a);
-                break;
-            default:
-                break;
-        }
     }
 }

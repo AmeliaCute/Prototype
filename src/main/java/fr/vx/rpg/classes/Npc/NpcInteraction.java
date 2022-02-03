@@ -13,7 +13,8 @@ import java.util.List;
 public abstract class NpcInteraction implements Listener
 {
 
-	public abstract int HistoryLevel();
+	public abstract int MinimumHistoryLevel();
+	public abstract boolean PlayerDontHaveHlMessage();
 	public abstract HistoryBranch HistoryBranch();
 	public abstract String NameOfNpc();
 	protected abstract int action(Player player);
@@ -22,4 +23,6 @@ public abstract class NpcInteraction implements Listener
 	{
 		action(player);
 	}
+
+
 }

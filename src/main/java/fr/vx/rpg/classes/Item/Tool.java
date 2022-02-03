@@ -8,6 +8,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -21,22 +22,25 @@ public class Tool extends Item
 
     private List<Attributes> attributesList;
 
+    private final List<String> description;
+
     private List<Enchantment> enchantmentList;
     private List<Integer> enchantmentLvl;
 
     private boolean hasAttributes;
     private boolean hasEnchantment;
 
-    public Tool(Material material, String name, Rarity rarity, float basePrice)
+    public Tool(Material material, String name, Rarity rarity,List<String> description, float basePrice)
     {
         super(material, name, rarity, basePrice);
         this.material = material;
         this.name = name;
         this.rarity = rarity;
         this.basePrice = basePrice;
+        this.description = description;
     }
 
-    public Tool(Material material, String name, List<Attributes> attributesList, Rarity rarity, float basePrice)
+    public Tool(Material material, String name, List<Attributes> attributesList, Rarity rarity,List<String> description, float basePrice)
     {
         super(material, name, rarity, basePrice);
         this.material = material;
@@ -45,9 +49,10 @@ public class Tool extends Item
         this.basePrice = basePrice;
         this.attributesList = attributesList;
         this.hasAttributes = true;
+        this.description = description;
     }
 
-    public Tool(Material material, String name, List<Enchantment> EnchantmentList,List<Integer> Enchantmentlevel, Rarity rarity, float basePrice)
+    public Tool(Material material, String name, List<Enchantment> EnchantmentList,List<Integer> Enchantmentlevel, Rarity rarity,List<String> description, float basePrice)
     {
         super(material, name, rarity, basePrice);
         this.material = material;
@@ -57,9 +62,10 @@ public class Tool extends Item
         this.enchantmentList = EnchantmentList;
         this.enchantmentLvl = Enchantmentlevel;
         this.hasEnchantment = true;
+        this.description = description;
     }
 
-    public Tool(Material material, String name, List<Enchantment> EnchantmentList,List<Integer> Enchantmentlevel,List<Attributes> attributesList, Rarity rarity, float basePrice)
+    public Tool(Material material, String name, List<Enchantment> EnchantmentList,List<Integer> Enchantmentlevel,List<Attributes> attributesList, Rarity rarity,List<String> description ,float basePrice)
     {
         super(material, name, rarity, basePrice);
         this.material = material;
@@ -71,6 +77,7 @@ public class Tool extends Item
         this.attributesList = attributesList;
         this.hasEnchantment = true;
         this.hasAttributes = true;
+        this.description = description;
     }
 
 
@@ -79,9 +86,16 @@ public class Tool extends Item
     {
         ItemStack a = new ItemStack(material);
         ItemMeta b = a.getItemMeta();
+        List<String> c = new ArrayList<String>();
+        c.add(null);
+        c.addAll(description);
+        c.add(null);
+        c.add(ChatColor.GOLD+""+basePrice+" pieces");
+        c.add(rarity.getDescription());
+
 
         b.setDisplayName(rarity.getColor() + name);
-        b.setLore(Arrays.asList("",rarity.getDescription(), ChatColor.GOLD+""+basePrice+" pieces"));
+        b.setLore(c);
 
         if(hasAttributes)
         {

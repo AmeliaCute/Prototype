@@ -2,6 +2,7 @@ package fr.vx.rpg;
 
 import fr.vx.rpg.classes.Crafting.CauldronCraft;
 import fr.vx.rpg.classes.Debug.RpgCmd;
+import fr.vx.rpg.classes.Debug.RpgCmdTbCompletion;
 import fr.vx.rpg.classes.House.impl.Houses;
 
 import fr.vx.rpg.classes.Jobs.JobRank;
@@ -66,6 +67,7 @@ public final class RPG extends JavaPlugin
         pm.registerEvents(new NpcInteractionEvent(), this);
 
         this.getCommand("rpg").setExecutor(new RpgCmd());
+        this.getCommand("rpg").setTabCompleter(new RpgCmdTbCompletion());
     }
 
     @Override
@@ -81,7 +83,6 @@ public final class RPG extends JavaPlugin
                 reader.uninject(player);
             }
         }
-        npc.RemoveAllNpc();
     }
 
 }

@@ -11,11 +11,16 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 public class NpcInteractionEvent implements Listener
 {
-    //DianaInteraction dianaInteraction = new DianaInteraction();
-
     @EventHandler
     public void npcInter(NpcRightClicked event)
     {
-    	new DianaInteraction().interact(event.getPlayer());
+    	switch (event.getName())
+        {
+            case "Diana":
+                new DianaInteraction().interact(event.getPlayer());
+                break;
+            default:
+                event.getPlayer().sendMessage(event.getName()+": Salut !");
+        }
     }
 }

@@ -1,13 +1,9 @@
 package fr.vx.rpg.classes.Player;
 
-import fr.vx.rpg.RPG;
 import fr.vx.rpg.classes.Jobs.Job;
 import fr.vx.rpg.classes.Npc.npc;
 import fr.vx.rpg.classes.Quests.Quest;
 import fr.vx.rpg.utils.PacketsReader;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Sound;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
