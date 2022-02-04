@@ -63,7 +63,7 @@ public class Food implements Listener
 
         List<String> description = new ArrayList<String>();
         if(this.regen){description.add(ChatColor.RED+"Recuperation de coeurs: "+ChatColor.GREEN+"+"+this.HeartRegenerated+" ❤");}
-        if(this.damage){description.add(ChatColor.RED+"Coeurs perdu: -"+this.DamageTaked+" ❤");}
+        if(this.damage){description.add(ChatColor.RED+"Degats recu: -"+this.DamageTaked+" ❤");}
         if(this.hgive){description.add(ChatColor.RED+"Gain de coeurs: "+ChatColor.GREEN+"+"+this.HeartGived+" ❤");}
         description.add(null);
         description.add(rarity.getDescription());
