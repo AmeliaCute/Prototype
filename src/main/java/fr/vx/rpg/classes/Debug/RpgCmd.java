@@ -46,8 +46,8 @@ public class RpgCmd implements CommandExecutor{
                 }
                 if(args[0].equalsIgnoreCase("version"))
                 {
-                    player.sendMessage("Version: 1.3.6.2");
-                    player.sendMessage("Date du build: 3/2/2022 a 8:36");
+                    player.sendMessage("Version: 1.3.6.1");
+                    player.sendMessage("Date du build: 5/2/2022 a 1:41");
                 }
             }
             if(args.length == 2)

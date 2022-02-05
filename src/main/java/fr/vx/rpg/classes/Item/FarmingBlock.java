@@ -23,7 +23,6 @@ public class FarmingBlock implements Listener
         this.exp = exp;
         this.respawnTimeInMinutes = respawnTimeInMinutes;
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
-
     }
 
     @EventHandler

@@ -24,6 +24,8 @@ public class Food implements Listener
     private final Material icon;
     private final Rarity rarity;
     private final double basePrice;
+    private final double foodRegeneration;
+    private final double saturation;
 
     private final double HeartRegenerated;
     private final double DamageTaked;
@@ -33,11 +35,13 @@ public class Food implements Listener
     private boolean damage=false;
     private boolean hgive=false;
 
-    public Food(@NotNull String name, @NotNull Material icon, Rarity rarity,double basePrice,double HeartRegenerated, double DamageTaked, double HeartGived) {
+    public Food(@NotNull String name, @NotNull Material icon, @NotNull Rarity rarity,@NotNull int FoodRegeneration,int saturation,@NotNull double basePrice,@NotNull double HeartRegenerated,@NotNull double DamageTaked,@NotNull double HeartGived) {
         this.name = name;
         this.icon = icon;
         this.rarity = rarity;
         this.basePrice = basePrice;
+        this.foodRegeneration = FoodRegeneration;
+        this.saturation = saturation;
         if (HeartRegenerated <= 0) {this.HeartRegenerated = 0;}
         else {
             this.HeartRegenerated = HeartRegenerated;
@@ -62,14 +66,14 @@ public class Food implements Listener
         ItemMeta b = a.getItemMeta();
 
         List<String> description = new ArrayList<String>();
-        if(this.regen){description.add(ChatColor.RED+"Recuperation de coeurs: "+ChatColor.GREEN+"+"+this.HeartRegenerated+" ❤");}
-        if(this.damage){description.add(ChatColor.RED+"Degats recu: -"+this.DamageTaked+" ❤");}
-        if(this.hgive){description.add(ChatColor.RED+"Gain de coeurs: "+ChatColor.GREEN+"+"+this.HeartGived+" ❤");}
+        if(this.regen){description.add(ChatColor.RED+"Recuperation de coeurs: "+ChatColor.GREEN+"+"+this.HeartRegenerated/2+" ❤");}
+        if(this.damage){description.add(ChatColor.RED+"Degats recu: -"+this.DamageTaked/2+" ❤");}
+        if(this.hgive){description.add(ChatColor.RED+"Gain de coeurs: "+ChatColor.GREEN+"+"+this.HeartGived/2+" ❤");}
         description.add(null);
-        description.add(rarity.getDescription());
         description.add(ChatColor.GOLD+""+basePrice+" Pieces.");
+        description.add(rarity.getDescription());
 
-        b.setDisplayName(name);
+        b.setDisplayName(rarity.getColor()+name);
         b.setLore(description);
         b.setUnbreakable(true);
 
@@ -83,7 +87,7 @@ public class Food implements Listener
         Player player = event.getPlayer();
         if (event.getAction().equals(Action.RIGHT_CLICK_AIR))
         {
-            if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase(this.name));
+            if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase(this.rarity.getColor()+this.name));
             {
                 player.getInventory().getItemInMainHand().setAmount(0);
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BURP, 1.5F, 3.0F);
@@ -92,6 +96,11 @@ public class Food implements Listener
                 if(damage) {if(player.getHealth() <= this.DamageTaked){player.setHealth(0);}else player.setHealth(player.getHealth()-this.DamageTaked);}
 
                 if(hgive) {player.setMaxHealth(player.getMaxHealth()+HeartGived);}
+
+                int foodlevel = 20 - player.getFoodLevel();
+                if(foodlevel <= foodRegeneration){player.setFoodLevel(20);}else player.setFoodLevel((int) (player.getFoodLevel()+foodRegeneration));
+
+                player.setSaturation((float) saturation);
             }
             return;
         }else return;

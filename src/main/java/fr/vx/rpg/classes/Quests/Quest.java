@@ -102,7 +102,7 @@ public class Quest
 
     public static void finishedQuestMessage(String questName, Player player)
     {
-        player.sendMessage(ChatColor.LIGHT_PURPLE+"◆"+ChatColor.WHITE+"Quete terminer ! ("+questName+")");
+        player.sendMessage(ChatColor.LIGHT_PURPLE+""+ChatColor.WHITE+"Quete terminer ! ("+questName+")");
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.5F, 3F);
     }
 }

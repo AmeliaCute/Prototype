@@ -3,6 +3,7 @@ package fr.vx.rpg;
 import fr.vx.rpg.classes.Crafting.CauldronCraft;
 import fr.vx.rpg.classes.Debug.RpgCmd;
 import fr.vx.rpg.classes.Debug.RpgCmdTbCompletion;
+import fr.vx.rpg.classes.House.House;
 import fr.vx.rpg.classes.House.impl.Houses;
 
 import fr.vx.rpg.classes.Jobs.JobRank;

@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class Items {
@@ -45,7 +44,7 @@ public class Items {
 		test5 = new Item(Material.SPRUCE_WOOD, "Bois de sapin", Rarity.UNCOMMON, 120);
 		test6 = new FarmingBlock(Material.SPRUCE_WOOD, test5.getItemStack(), 300, 1);
 
-		test7 = new Food("Idk",Material.BEETROOT_SOUP,Rarity.LEGENDARY,1.1,0,10.5, 5);
+		test7 = new Food("Idk",Material.BEETROOT_SOUP,Rarity.LEGENDARY,15,12,1.1,0,10.5, 5);
 
 		items.add(test.getItemStack());
 		items.add(test2.getItemStack());

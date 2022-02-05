@@ -1,4 +1,4 @@
-package fr.vx.rpg.classes.House.History;
+package fr.vx.rpg.classes.History;
 
 public enum HistoryBranch
 {
