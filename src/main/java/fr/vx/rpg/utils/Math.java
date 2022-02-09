@@ -6,4 +6,6 @@ public class Math //(For MySql)
     {
         return a+b;
     }
+    public static double DoubleAddition(double a, double b) {return a+b;}
+    public static double DoubleSubstraction(double base, double sub) {return base-sub;}
 }

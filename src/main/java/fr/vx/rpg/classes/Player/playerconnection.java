@@ -21,6 +21,7 @@ public class playerconnection implements Listener
         }
         Job.CreateAccount(event.getPlayer());
         Quest.CreateAccount(event.getPlayer());
+        Coins.addPlayer(event.getPlayer());
 
         if(npc.getNpcList() !=null)
         {

@@ -4,7 +4,10 @@ public enum Type
 {
     Bar("Bar", false),
     Guild("Guild", false),
-    PlayerHouse("Maison", true);
+    PlayerHouse("Maison", true),
+    Shop("Boutique", false),
+    FactionHouse("Maison de Faction", true)
+    ;
 
     private String NameType;
     private boolean Buyable;
