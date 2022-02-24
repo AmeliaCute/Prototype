@@ -11,15 +11,7 @@ public class Houses
 
     public static void Register()
     {
-        MyHouse = new House(
-                1,
-                "MyHouse",
-                new Location(Bukkit.getWorld("world"), 14, 74, -16),
-                new Location(Bukkit.getWorld("world"), 10, 74, -16),
-                new Location(Bukkit.getWorld("world"), 12, 74, -16),
-                Type.PlayerHouse,
-                150000
-        );
+        MyHouse = new House(1, "MyHouse", new Location(Bukkit.getWorld("world"), 14, 74, -16), new Location(Bukkit.getWorld("world"), 10, 74, -16), new Location(Bukkit.getWorld("world"), 12, 74, -16), Type.PlayerHouse, 150000);
     }
 
 }

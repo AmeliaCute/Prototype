@@ -24,6 +24,7 @@ public class Items {
 
 	public static Food test7;
 
+	public static Item SpellTest;
 	public static List<ItemStack> items = new ArrayList<ItemStack>();
 
 	public static void register()
@@ -45,6 +46,8 @@ public class Items {
 		test6 = new FarmingBlock(Material.SPRUCE_WOOD, test5.getItemStack(), 300, 1);
 
 		test7 = new Food("Idk",Material.BEETROOT_SOUP,Rarity.LEGENDARY,15,12,1.1,0,10.5, 5);
+
+		SpellTest = new Item(Material.STICK,"Baguette de sorcier", Rarity.VERY_RARE, 150);
 
 		items.add(test.getItemStack());
 		items.add(test2.getItemStack());

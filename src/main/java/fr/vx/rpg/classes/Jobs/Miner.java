@@ -3,7 +3,6 @@ package fr.vx.rpg.classes.Jobs;
 import fr.vx.rpg.utils.MySql;
 import fr.vx.rpg.utils.Math;
 import org.bukkit.entity.Player;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

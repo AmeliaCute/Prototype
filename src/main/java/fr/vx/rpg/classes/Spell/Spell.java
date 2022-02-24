@@ -1,5 +1,6 @@
 package fr.vx.rpg.classes.Spell;
 
+import fr.vx.rpg.utils.Icons;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -12,6 +13,8 @@ public abstract class Spell {
 	public abstract float getManaCost();
 	
 	public abstract String getName();
+
+	public abstract Icons getIcon();
 	
 	public abstract String getDescription();
 	
@@ -21,7 +24,7 @@ public abstract class Spell {
 	
 	public void send(Player player) {
 		
-		//TODO Implémenté une jauge de magie / mana dans la BDD et checké si l'utilisateur en a assez
+		//TODO Implï¿½mentï¿½ une jauge de magie / mana dans la BDD et checkï¿½ si l'utilisateur en a assez
 		
 		new BukkitRunnable() {
 			

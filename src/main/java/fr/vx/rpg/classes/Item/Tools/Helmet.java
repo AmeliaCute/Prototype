@@ -1,10 +1,8 @@
 package fr.vx.rpg.classes.Item.Tools;
 
 import fr.vx.rpg.classes.Item.Attributes;
-import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
 import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;

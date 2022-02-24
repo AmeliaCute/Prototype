@@ -1,8 +1,8 @@
 package fr.vx.rpg.classes.Spell.impl;
 
+import fr.vx.rpg.utils.Icons;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-
 import fr.vx.rpg.classes.Spell.Spell;
 
 public class FireballSpell extends Spell {
@@ -18,6 +18,11 @@ public class FireballSpell extends Spell {
 	}
 
 	@Override
+	public Icons getIcon() {
+		return Icons.FIREBALL;
+	}
+
+	@Override
 	public String getDescription() {
 		return "Lance une boules de feu";
 	}
@@ -25,7 +30,6 @@ public class FireballSpell extends Spell {
 	@Override
 	protected boolean action(Player player, int tick) {
 		
-		//TODO Peut être pas optimal, à voir
 		player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREBALL);
 		return true;
 	}

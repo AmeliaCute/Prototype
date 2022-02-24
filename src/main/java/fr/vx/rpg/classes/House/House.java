@@ -11,10 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -108,6 +105,7 @@ public class House implements Listener
                     player.sendMessage(ChatColor.RED+"⪧ Pas assez d'argent.");
                     return;
                 }
+                Coins.remove(player, this.price);
                 player.closeInventory();
                 HouseDataBase.setOwned(Integer.parseInt(click.getView().getTitle()));
                 HouseDataBase.setOwner(Integer.parseInt(click.getView().getTitle()), player);

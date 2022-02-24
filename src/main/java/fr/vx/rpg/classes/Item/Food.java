@@ -150,6 +150,11 @@ public class Food implements Listener
                 if(foodlevel <= foodRegeneration){player.setFoodLevel(20);}else player.setFoodLevel((int) (player.getFoodLevel()+foodRegeneration));
 
                 player.setSaturation((float) saturation);
+                
+                for(int i = 0; i < PotionEffect.size(); i++)
+                {
+                    player.addPotionEffect(PotionEffect.get(i));
+                }
             }
             return;
         }else return;
