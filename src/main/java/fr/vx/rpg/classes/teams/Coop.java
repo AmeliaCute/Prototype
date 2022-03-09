@@ -1,6 +1,5 @@
 package fr.vx.rpg.classes.teams;
 
-import com.sun.istack.internal.NotNull;
 import fr.vx.rpg.utils.Icons;
 import fr.vx.rpg.utils.MySql;
 import org.bukkit.Bukkit;
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class Coop {
-    public static void Create(@NotNull Player player, String coopName) {
+    public static void Create(Player player, String coopName) {
         if (getCoop(player).equals("false")) {
             UUID uuid = UUID.randomUUID();
             String owner_uuid = player.getUniqueId().toString();
