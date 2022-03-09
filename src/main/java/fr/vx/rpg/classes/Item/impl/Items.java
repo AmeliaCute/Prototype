@@ -2,6 +2,8 @@ package fr.vx.rpg.classes.Item.impl;
 
 import fr.vx.rpg.classes.Item.*;
 import fr.vx.rpg.classes.Item.Tools.*;
+import fr.vx.rpg.classes.Spell.Spell;
+import fr.vx.rpg.classes.Spell.impl.FireballSpell;
 import fr.vx.rpg.classes.mobs.MobEquipment;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -24,7 +26,7 @@ public class Items {
 
 	public static Food test7;
 
-	public static Item SpellTest;
+	public static MagicWand SpellTest;
 	public static List<ItemStack> items = new ArrayList<ItemStack>();
 
 	public static void register()
@@ -47,7 +49,7 @@ public class Items {
 
 		test7 = new Food("Idk",Material.BEETROOT_SOUP,Rarity.LEGENDARY,15,12,1.1,0,10.5, 5);
 
-		SpellTest = new Item(Material.STICK,"Baguette de sorcier", Rarity.VERY_RARE, 150);
+		SpellTest = new MagicWand(Material.BLAZE_ROD,"TEST_WAND",Rarity.UNCOMMON,Arrays.asList("Lorem Ipsum blablabla"), 1200, 200, null);
 
 		items.add(test.getItemStack());
 		items.add(test2.getItemStack());
@@ -55,6 +57,7 @@ public class Items {
 		items.add(EpeeDeDiana.getItemStack());
 		items.add(test5.getItemStack());
 		items.add(test7.getItemStack());
+		items.add(SpellTest.getItemstack());
 	}
 
 }

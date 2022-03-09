@@ -40,6 +40,18 @@ public class Food implements Listener
     private boolean hasEffects=false;
     private boolean hasAttribut=false;
 
+    /**
+     *
+     * @param name set the name
+     * @param icon set the Material
+     * @param rarity set the Rarity
+     * @param FoodRegeneration
+     * @param saturation
+     * @param basePrice default price
+     * @param HeartRegenerated
+     * @param DamageTaked
+     * @param HeartGived Heart added
+     */
     public Food(@NotNull String name, @NotNull Material icon, @NotNull Rarity rarity,@NotNull int FoodRegeneration,int saturation,@NotNull double basePrice,@NotNull double HeartRegenerated,@NotNull double DamageTaked,@NotNull double HeartGived) {
         this.name = name;
         this.icon = icon;

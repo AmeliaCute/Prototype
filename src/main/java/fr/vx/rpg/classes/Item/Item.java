@@ -21,7 +21,14 @@ public class Item {
 	protected List<Integer> enchantsLvl;
 	protected boolean dropable = false;
 	protected boolean craftable = false;
-	
+
+	/**
+	 *
+	 * @param material set a Material of the Bukkit Class Material
+	 * @param name Set a name to your Item
+	 * @param rarity set the Rarity
+	 * @param basePrice set the Default price
+	 */
 	public Item(Material material, String name, Rarity rarity, float basePrice) {
 		
 		this.material = material;
@@ -31,7 +38,16 @@ public class Item {
 		this.basePrice = basePrice;
 		
 	}
-	
+
+	/**
+	 *
+	 * @param material set a Material of the Bukkit Class Material
+	 * @param name Set a name to your Item
+	 * @param rarity set the Rarity
+	 * @param basePrice set the Default price
+	 * @param enchants set the Enchantments
+	 * @param enchantsLvl set the Enchantments Level
+	 */
 	public Item(Material material, String name, Rarity rarity, float basePrice, List<Enchantment> enchants, List<Integer> enchantsLvl) {
 			
 		this(material, name, rarity, basePrice);

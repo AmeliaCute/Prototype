@@ -15,6 +15,11 @@ public enum Rarity {
 	private final String description;
 	private final ChatColor color;
 
+	/**
+	 * @apiNote You thing it's useless but it doesn't
+	 * @param description add the description
+	 * @param color add the color
+	 */
 	private Rarity(String description, ChatColor color) {
 		this.description = description;
 		this.color = color;

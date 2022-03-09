@@ -16,6 +16,13 @@ public class FarmingBlock implements Listener
     private int exp;
     private int respawnTimeInMinutes;
 
+    /**
+     *
+     * @param block set a block need to be break
+     * @param drop set the drop
+     * @param exp set the exp
+     * @param respawnTimeInMinutes set the respawn time of the @block
+     */
     public FarmingBlock(Material block, ItemStack drop, int exp,int respawnTimeInMinutes)
     {
         this.block = block;

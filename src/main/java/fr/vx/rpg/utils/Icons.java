@@ -4,14 +4,23 @@ import org.bukkit.ChatColor;
 
 public enum Icons
 {
-    FIRE("🔥", ChatColor.RED),
-    WATER("💧", ChatColor.BLUE),
-    WATER_WAVE("🌊", ChatColor.BLUE),
+    FIRE("☀", ChatColor.RED),
+    WATER("◕｡", ChatColor.BLUE),
     ICE("❄", ChatColor.AQUA),
-    CYCLONE("🌀", ChatColor.WHITE),
+    CLOUD("☁", ChatColor.WHITE),
     STAR("✨", ChatColor.GOLD),
     HEART("❤", ChatColor.GREEN),
-    FIREBALL("💥", ChatColor.RED),
+    FIREBALL("☼", ChatColor.RED),
+    GUILD("⚜", ChatColor.AQUA),
+    MUSIC("♬", ChatColor.GREEN),
+    ARROW("➹", ChatColor.WHITE),
+    TINYHEART("♥", ChatColor.RED),
+
+    //GUILD RANK:
+    GUILD_CHIEF("♛", ChatColor.GOLD),
+    GUILD_KNIGHT("❈", ChatColor.GREEN),
+    GUILD_MEMBER("✦", ChatColor.RED),
+
     ;
     private final String icon;
     private final ChatColor color;
@@ -24,3 +33,4 @@ public enum Icons
     public String icon() {return icon;}
     public ChatColor color() {return color;}
 }
+

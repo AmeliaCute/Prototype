@@ -1,6 +1,5 @@
 package fr.vx.rpg.classes.Debug;
 
-import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.impl.Items;
 import fr.vx.rpg.classes.mobs.impl.Larbin;
 import net.minecraft.server.v1_16_R3.WorldServer;
@@ -40,6 +39,7 @@ public class RpgCmd implements CommandExecutor{
                     for(int i = 0; i < Items.items.size(); i++)
                     {
                         a.addItem(Items.items.get(i));
+
                     }
                     player.openInventory(a);
                     return true;

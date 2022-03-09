@@ -7,6 +7,13 @@ public class Attributes
 
     private final Type type;
     private final double numb;
+
+    /**
+     *
+     * @param type set a Attributes of Attributes.java.Type
+     * @param numb set the level
+     *
+     */
     public Attributes(Type type, double numb)
     {
         this.numb = numb;

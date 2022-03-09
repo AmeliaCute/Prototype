@@ -12,8 +12,11 @@ import fr.vx.rpg.classes.Npc.NpcInteraction;
 import fr.vx.rpg.classes.Npc.NpcInteractionEvent;
 import fr.vx.rpg.classes.Npc.impl.citizens;
 import fr.vx.rpg.classes.Npc.npc;
+import fr.vx.rpg.classes.Player.Chats.Chat;
+import fr.vx.rpg.classes.Player.Chats.chatcommands;
 import fr.vx.rpg.classes.Player.playerconnection;
 import fr.vx.rpg.classes.Quests.impl.quests;
+import fr.vx.rpg.classes.teams.coopCommand;
 import fr.vx.rpg.handlers.SpawnRunnable;
 import fr.vx.rpg.utils.MySql;
 import fr.vx.rpg.utils.PacketsReader;
@@ -66,8 +69,11 @@ public final class RPG extends JavaPlugin
 
         pm.registerEvents(new playerconnection(), this);
         pm.registerEvents(new NpcInteractionEvent(), this);
+        pm.registerEvents(new Chat(), this);
 
         this.getCommand("rpg").setExecutor(new RpgCmd());
+        this.getCommand("coop").setExecutor(new coopCommand());
+        this.getCommand("chat").setExecutor(new chatcommands());
         this.getCommand("rpg").setTabCompleter(new RpgCmdTbCompletion());
     }
 

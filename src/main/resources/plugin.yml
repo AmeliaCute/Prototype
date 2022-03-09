@@ -7,3 +7,7 @@ commands:
   rpg:
     permission: admin
     aliases: prototype
+  coop:
+    aliases: faction
+  chat:
+    aliases: messages
