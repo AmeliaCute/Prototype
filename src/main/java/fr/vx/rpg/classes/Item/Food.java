@@ -40,18 +40,6 @@ public class Food implements Listener
     private boolean hasEffects=false;
     private boolean hasAttribut=false;
 
-    /**
-     *
-     * @param name set the name
-     * @param icon set the Material
-     * @param rarity set the Rarity
-     * @param FoodRegeneration
-     * @param saturation
-     * @param basePrice default price
-     * @param HeartRegenerated
-     * @param DamageTaked
-     * @param HeartGived Heart added
-     */
     public Food(@NotNull String name, @NotNull Material icon, @NotNull Rarity rarity,@NotNull int FoodRegeneration,int saturation,@NotNull double basePrice,@NotNull double HeartRegenerated,@NotNull double DamageTaked,@NotNull double HeartGived) {
         this.name = name;
         this.icon = icon;
@@ -146,11 +134,11 @@ public class Food implements Listener
     public void onClickOnFood(PlayerInteractEvent event)
     {
         Player player = event.getPlayer();
-        if (event.getAction().equals(Action.RIGHT_CLICK_AIR))
+        if(event.getAction().equals(Action.RIGHT_CLICK_AIR))
         {
-            if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase(this.rarity.getColor()+this.name));
+            if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(this.rarity.getColor()+this.name))
             {
-                player.getInventory().getItemInMainHand().setAmount(0);
+                player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount()-1);
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BURP, 1.5F, 3.0F);
                 if(regen) {double hearts = (int) (player.getMaxHealth() - player.getHealth());if(hearts < this.HeartRegenerated){player.setHealth(player.getMaxHealth());}else{player.setHealth(player.getHealth()+this.HeartRegenerated);}}
 
@@ -163,12 +151,16 @@ public class Food implements Listener
 
                 player.setSaturation((float) saturation);
                 
-                for(int i = 0; i < PotionEffect.size(); i++)
+                if(!(PotionEffect == null))
                 {
-                    player.addPotionEffect(PotionEffect.get(i));
+                    for(int i = 0; i < PotionEffect.size(); i++)
+                    {
+                        player.addPotionEffect(PotionEffect.get(i));
+                    }
                 }
+                return;
             }
-            return;
+            else return;
         }else return;
     }
 }
