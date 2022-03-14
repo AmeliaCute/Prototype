@@ -52,7 +52,7 @@ public class Items {
 
 		List<Spell> connard = new ArrayList<>();
 		connard.add(new FireballSpell());
-		SpellTest = new MagicWand(Material.BLAZE_ROD,"TEST_WAND",Rarity.UNCOMMON,Arrays.asList("Lorem Ipsum blablabla"), 1200, 200, connard);
+		SpellTest = new MagicWand(Material.BLAZE_ROD,1,"TEST_WAND",Rarity.UNCOMMON,Arrays.asList("Lorem Ipsum blablabla"), 1200, 200, connard);
 
 		items.add(test.getItemStack());
 		items.add(test2.getItemStack());

@@ -4,19 +4,13 @@ import fr.vx.rpg.botania.Botania;
 import fr.vx.rpg.classes.Crafting.CauldronCraft;
 import fr.vx.rpg.classes.Debug.RpgCmd;
 import fr.vx.rpg.classes.Debug.RpgCmdTbCompletion;
-import fr.vx.rpg.classes.House.House;
-import fr.vx.rpg.classes.House.impl.Houses;
 
 import fr.vx.rpg.classes.Jobs.JobRank;
-import fr.vx.rpg.classes.Jobs.impl.jobs;
-import fr.vx.rpg.classes.Npc.NpcInteraction;
 import fr.vx.rpg.classes.Npc.NpcInteractionEvent;
 import fr.vx.rpg.classes.Npc.impl.citizens;
-import fr.vx.rpg.classes.Npc.npc;
 import fr.vx.rpg.classes.Player.Chats.Chat;
 import fr.vx.rpg.classes.Player.Chats.chatcommands;
 import fr.vx.rpg.classes.Player.playerconnection;
-import fr.vx.rpg.classes.Quests.impl.quests;
 import fr.vx.rpg.classes.Spell.impl.Spells;
 import fr.vx.rpg.classes.teams.coopCommand;
 import fr.vx.rpg.handlers.SpawnRunnable;
@@ -52,7 +46,7 @@ public final class RPG extends JavaPlugin
         plugin = RPG.getPlugin(RPG.class);
         PluginManager pm = Bukkit.getPluginManager();
         //mySql.connect();
-        Botania.registerItems();
+        Botania.init();
 
     	Items.register();
         //Houses.Register();

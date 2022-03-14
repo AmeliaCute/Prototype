@@ -13,4 +13,8 @@ public class Maths
         for (int i = 0; i < text.length(); i++)
             ascii.append(Integer.toString((int) text.charAt(i)));
         return Long.parseLong(ascii.toString());}
+    public static int convertLongToInteger(long x)
+    {
+        return (int) x;
+    }
 }

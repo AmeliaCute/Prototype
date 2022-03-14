@@ -22,6 +22,7 @@ import java.util.List;
 public class MagicWand extends ItemStack implements Listener
 {
     private final Material material;
+    private final int id;
     private final String name;
     private final Rarity rarity;
     private final List<String> description;
@@ -40,10 +41,12 @@ public class MagicWand extends ItemStack implements Listener
      * @param basePrice set the price
      * @param MaxMana set the MaxMana when you got the Wand
      * @param spell set default spells
+     * @param id set id of custom models
      */
-    public MagicWand(Material material, String name, Rarity rarity, List<String> description, float basePrice,int MaxMana, List<Spell> spell)
+    public MagicWand(Material material,int id, String name, Rarity rarity, List<String> description, float basePrice,int MaxMana, List<Spell> spell)
     {
         this.material = material;
+        this.id = id;
         this.name = name;
         this.rarity = rarity;
         this.description = description;
@@ -52,7 +55,7 @@ public class MagicWand extends ItemStack implements Listener
         this.spell = spell;
         this.Mana = 0;
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
-        System.out.println("Registering item with id :"+ Maths.toAsciiLong(name));
+        System.out.println("Registering item with id :"+RPG.MODID+":"+name+":"+id);
     }
 
     public static List<Spell> getItemSpells(ItemStack itemStack)
@@ -82,44 +85,6 @@ public class MagicWand extends ItemStack implements Listener
     public int getMaxMana()
     {
         return MaxMana;
-    }
-
-    public ItemStack getItemstack()
-    {
-        ItemStack Wand = new ItemStack(material);
-        ItemMeta WandMeta = Wand.getItemMeta();
-
-        WandMeta.setDisplayName(rarity.getColor()+name);
-        WandMeta.setCustomModelData((int) Maths.toAsciiLong(name));
-
-        List<String> itemDesc = new ArrayList<String>();
-        itemDesc.add(null);
-        itemDesc.add(ChatColor.GOLD+"Mana: "+Mana+"/"+MaxMana);
-        itemDesc.add(null);
-        if(!(spell == null))
-        {
-            itemDesc.add(ChatColor.DARK_GRAY+"Sorts:");
-            for(int i = 0; i < 5; i++)
-            {
-                if(i < spell.size())
-                {
-                    itemDesc.add(ChatColor.GRAY+"⪧ "+spell.get(i).getIcon().color()+spell.get(i).getIcon().icon()+" "+Spells.name(spell.get(i)));
-                }
-                else
-                {
-                    itemDesc.add(ChatColor.GRAY+"⪧ vide");
-                }
-            }
-            itemDesc.add(null);
-        }
-        itemDesc.addAll(description);
-        itemDesc.add(null);
-        itemDesc.add(rarity.getColor()+rarity.getDescription());
-        WandMeta.setLore(itemDesc);
-
-        Wand.setItemMeta(WandMeta);
-
-        return Wand;
     }
 
     public void removeItemMana(int mana, Player player)
@@ -158,6 +123,44 @@ public class MagicWand extends ItemStack implements Listener
             }
             wand.getItemMeta().setLore(description);
         }
+    }
+
+    public ItemStack getItemstack()
+    {
+        ItemStack Wand = new ItemStack(material);
+        ItemMeta WandMeta = Wand.getItemMeta();
+
+        WandMeta.setDisplayName(rarity.getColor()+name);
+        WandMeta.setCustomModelData(id);
+
+        List<String> itemDesc = new ArrayList<String>();
+        itemDesc.add(null);
+        itemDesc.add(ChatColor.GOLD+"Mana: "+Mana+"/"+MaxMana);
+        itemDesc.add(null);
+        if(!(spell == null))
+        {
+            itemDesc.add(ChatColor.DARK_GRAY+"Sorts:");
+            for(int i = 0; i < 5; i++)
+            {
+                if(i < spell.size())
+                {
+                    itemDesc.add(ChatColor.GRAY+"⪧ "+spell.get(i).getIcon().color()+spell.get(i).getIcon().icon()+" "+Spells.name(spell.get(i)));
+                }
+                else
+                {
+                    itemDesc.add(ChatColor.GRAY+"⪧ vide");
+                }
+            }
+            itemDesc.add(null);
+        }
+        itemDesc.addAll(description);
+        itemDesc.add(null);
+        itemDesc.add(rarity.getColor()+rarity.getDescription());
+        WandMeta.setLore(itemDesc);
+
+        Wand.setItemMeta(WandMeta);
+
+        return Wand;
     }
 
     @EventHandler
