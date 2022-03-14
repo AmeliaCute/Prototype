@@ -1,6 +1,6 @@
 package fr.vx.rpg.classes.Player;
 
-import fr.vx.rpg.utils.Math;
+import fr.vx.rpg.utils.Maths;
 import fr.vx.rpg.utils.MySql;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -34,8 +34,8 @@ public class Coins
         {
             PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `player` SET `balance` = ? WHERE `uuid`=?");
             sts.setString(2, player.getUniqueId().toString());
-            sts.setDouble(1, Math.DoubleAddition(getBalance(player), amount));
-            if(Math.DoubleAddition(getBalance(player), amount) > 999999999)
+            sts.setDouble(1, Maths.DoubleAddition(getBalance(player), amount));
+            if(Maths.DoubleAddition(getBalance(player), amount) > 999999999)
             {
                 sts.close();
                 player.sendMessage(ChatColor.RED+"Vos poches sont pleine, vous devriez allez a la banque");
@@ -54,8 +54,8 @@ public class Coins
         {
             PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `player` SET `balance` = ? WHERE `uuid`=?");
             sts.setString(2, player.getUniqueId().toString());
-            sts.setDouble(1, Math.DoubleSubstraction(getBalance(player), amount));
-            if(Math.DoubleSubstraction(getBalance(player), amount) < 0)
+            sts.setDouble(1, Maths.DoubleSubstraction(getBalance(player), amount));
+            if(Maths.DoubleSubstraction(getBalance(player), amount) < 0)
             {
                 sts.close();
                 player.sendMessage(ChatColor.RED+"Operation impossible.");

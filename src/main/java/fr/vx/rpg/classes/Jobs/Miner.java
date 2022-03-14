@@ -1,7 +1,7 @@
 package fr.vx.rpg.classes.Jobs;
 
 import fr.vx.rpg.utils.MySql;
-import fr.vx.rpg.utils.Math;
+import fr.vx.rpg.utils.Maths;
 import org.bukkit.entity.Player;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +37,7 @@ public class Miner
 
     public static void addXp(Player player, int xp)
     {
-        int result = Math.Addition(xp,getXp(player));
+        int result = Maths.Addition(xp,getXp(player));
         try
         {
             PreparedStatement sts = MySql.getConnection().prepareStatement("UPDATE `jobs` SET `exp_miner`= ? WHERE `uuid`=?");

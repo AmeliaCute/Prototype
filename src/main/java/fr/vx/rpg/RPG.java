@@ -16,6 +16,7 @@ import fr.vx.rpg.classes.Player.Chats.Chat;
 import fr.vx.rpg.classes.Player.Chats.chatcommands;
 import fr.vx.rpg.classes.Player.playerconnection;
 import fr.vx.rpg.classes.Quests.impl.quests;
+import fr.vx.rpg.classes.Spell.impl.Spells;
 import fr.vx.rpg.classes.teams.coopCommand;
 import fr.vx.rpg.handlers.SpawnRunnable;
 import fr.vx.rpg.utils.MySql;
@@ -38,6 +39,7 @@ public final class RPG extends JavaPlugin
 
     public static List<EntityPlayer> npcList = new ArrayList<EntityPlayer>();
     public MySql mySql = new MySql();
+    public static String MODID = "rpg";
 
     @Override
     public void onEnable()
@@ -49,6 +51,7 @@ public final class RPG extends JavaPlugin
         Houses.Register();
         quests.register();
         jobs.Register();
+        Spells.register();
 
         citizens.register();
         if(!Bukkit.getOnlinePlayers().isEmpty())

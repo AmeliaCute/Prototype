@@ -4,6 +4,7 @@ import fr.vx.rpg.classes.Item.*;
 import fr.vx.rpg.classes.Item.Tools.*;
 import fr.vx.rpg.classes.Spell.Spell;
 import fr.vx.rpg.classes.Spell.impl.FireballSpell;
+import fr.vx.rpg.classes.Spell.impl.Spells;
 import fr.vx.rpg.classes.mobs.MobEquipment;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -49,7 +50,9 @@ public class Items {
 
 		test7 = new Food("Idk",Material.BEETROOT_SOUP,Rarity.LEGENDARY,15,12,1.1,0,10.5, 5);
 
-		SpellTest = new MagicWand(Material.BLAZE_ROD,"TEST_WAND",Rarity.UNCOMMON,Arrays.asList("Lorem Ipsum blablabla"), 1200, 200, null);
+		List<Spell> connard = new ArrayList<>();
+		connard.add(new FireballSpell());
+		SpellTest = new MagicWand(Material.BLAZE_ROD,"TEST_WAND",Rarity.UNCOMMON,Arrays.asList("Lorem Ipsum blablabla"), 1200, 200, connard);
 
 		items.add(test.getItemStack());
 		items.add(test2.getItemStack());

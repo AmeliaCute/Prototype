@@ -1,9 +1,15 @@
 package fr.vx.rpg.classes.Spell;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
 public class SpellEvents implements Listener {
-	
-	//TODO Checker si un item pouvant lancer un sort et utilis� et le lanc� si c'est le cas
+
+    //MagicWand
+
+    public static void sendSpellByItem(Spell spell, Player player)
+    {
+        spell.send(player);
+    }
 
 }

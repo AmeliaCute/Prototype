@@ -11,7 +11,25 @@ public class Spells {
 	public static void register() {
 		
 		SPELLS.add(new FireballSpell());
-		
 	}
 
+	public static Spell get(String name)
+	{
+        Spell spell = null;
+		for(int i = 0; i < SPELLS.size(); i++)
+		{
+			String x;
+			x = SPELLS.get(i).getIcon().color()+SPELLS.get(i).getIcon().icon()+" "+SPELLS.get(i).getName();
+			if(name.equals(x))
+			{
+				spell = SPELLS.get(i);
+			}
+		}
+		return spell;
+	}
+
+	public static String name(Spell spell)
+	{
+		return spell.getName();
+	}
 }
