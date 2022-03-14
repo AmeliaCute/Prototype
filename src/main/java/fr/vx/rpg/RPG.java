@@ -1,5 +1,6 @@
 package fr.vx.rpg;
 
+import fr.vx.rpg.botania.Botania;
 import fr.vx.rpg.classes.Crafting.CauldronCraft;
 import fr.vx.rpg.classes.Debug.RpgCmd;
 import fr.vx.rpg.classes.Debug.RpgCmdTbCompletion;
@@ -28,6 +29,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import fr.vx.rpg.classes.Item.impl.Items;
@@ -42,17 +44,20 @@ public final class RPG extends JavaPlugin
     public static List<EntityPlayer> npcList = new ArrayList<EntityPlayer>();
     public MySql mySql = new MySql();
     public static String MODID = "rpg";
+    public static Plugin plugin;
 
     @Override
     public void onEnable()
     {
+        plugin = RPG.getPlugin(RPG.class);
         PluginManager pm = Bukkit.getPluginManager();
-        mySql.connect();
+        //mySql.connect();
+        Botania.registerItems();
 
     	Items.register();
-        Houses.Register();
-        quests.register();
-        jobs.Register();
+        //Houses.Register();
+        //quests.register();
+        //jobs.Register();
         Spells.register();
 
         citizens.register();

@@ -125,4 +125,12 @@ public class Item {
 				
 	}
 
+	public static boolean isCustomItem(ItemStack itemStack) {
+
+		if (itemStack.hasItemMeta() && itemStack.getItemMeta().hasDisplayName() && itemStack.getItemMeta().getDisplayName().contains("§"))
+			return true;
+		return false;
+
+	}
+
 }

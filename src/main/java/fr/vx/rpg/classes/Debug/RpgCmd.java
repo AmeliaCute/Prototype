@@ -1,5 +1,6 @@
 package fr.vx.rpg.classes.Debug;
 
+import fr.vx.rpg.botania.Botania;
 import fr.vx.rpg.classes.Item.impl.Items;
 import fr.vx.rpg.classes.mobs.impl.Larbin;
 import net.minecraft.server.v1_16_R3.WorldServer;
@@ -41,6 +42,8 @@ public class RpgCmd implements CommandExecutor{
                         a.addItem(Items.items.get(i));
 
                     }
+                    //TODO à modif
+                    a.addItem(Botania.DAISY.getItemStack());
                     player.openInventory(a);
                     return true;
                 }
