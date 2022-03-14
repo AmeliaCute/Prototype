@@ -43,7 +43,7 @@ public class RpgCmd implements CommandExecutor{
 
                     }
                     //TODO à modif
-                    a.addItem(Botania.DAISY.getItemStack());
+                    a.addItem(Botania.DAISY.getItem().getItemStack());
                     player.openInventory(a);
                     return true;
                 }

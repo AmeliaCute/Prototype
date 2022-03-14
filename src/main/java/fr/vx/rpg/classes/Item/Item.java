@@ -1,16 +1,21 @@
 package fr.vx.rpg.classes.Item;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
+import fr.vx.rpg.utils.Maths;
+import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Item {
-	
+
+	private final String identifier;
 	private Material material;
 	private String name;
 	private String description;
@@ -36,6 +41,7 @@ public class Item {
 		this.description = rarity.getDescription();
 		this.rarity = rarity;
 		this.basePrice = basePrice;
+		this.identifier = Maths.toAsciiInteger(name).toString();
 		
 	}
 
@@ -56,7 +62,13 @@ public class Item {
 		enchanted = false;
 		
 	}
-	
+
+	public String getIdentifier() {
+
+		return this.identifier;
+
+	}
+
 	public Material getMaterial() {
 		
 		return material;
@@ -119,18 +131,28 @@ public class Item {
 				itemMeta.addEnchant(enchants.get(i), enchantsLvl.get(i), true);
 			}
 		}
-		
+
 		item.setItemMeta(itemMeta);
+		net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
+		NBTTagCompound itemCompound = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+		itemCompound.setString("custom_id", this.identifier);
+		nmsItem.setTag(itemCompound);
+		item = CraftItemStack.asBukkitCopy(nmsItem);
 		return item;
 				
 	}
 
-	public static boolean isCustomItem(ItemStack itemStack) {
+	public static boolean isSame(Item item, ItemStack itemStack) {
 
-		if (itemStack.hasItemMeta() && itemStack.getItemMeta().hasDisplayName() && itemStack.getItemMeta().getDisplayName().contains("§"))
-			return true;
+		net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(itemStack);
+		if (nmsItem.hasTag()) {
+			NBTTagCompound itemCompound = nmsItem.getTag();
+			if (itemCompound.getString("custom_id").equalsIgnoreCase(item.getIdentifier())) {
+				System.out.println("1234");
+				return true;
+			}
+		}
 		return false;
-
 	}
 
 }

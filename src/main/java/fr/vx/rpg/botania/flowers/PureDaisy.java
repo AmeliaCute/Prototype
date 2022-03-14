@@ -5,17 +5,36 @@ import fr.vx.rpg.botania.runnables.TransformationDaisy;
 import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitTask;
 
-public class PureDaisy extends Item implements Listener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class PureDaisy extends fr.vx.rpg.classes.blocks.Block {
+
+    List<TransformationDaisy> runnables = new ArrayList<>();
 
     public PureDaisy() {
 
-        super(Material.POPPY, "Pure Daisy", Rarity.UNCOMMON, 0);
-        RPG.plugin.getServer().getPluginManager().registerEvents(this, RPG.plugin);
+        super(new Item(Material.POPPY, "Pure Daisy", Rarity.UNCOMMON, 0));
+
+    }
+
+    public TransformationDaisy runnablesContainBlock(Block block) {
+
+        for (TransformationDaisy runnable : runnables) {
+
+            if (runnable.getBlock().equals(block))
+                return runnable;
+
+        }
+        return null;
 
     }
 
@@ -24,9 +43,26 @@ public class PureDaisy extends Item implements Listener {
 
         ItemStack item = event.getItemInHand();
 
-        if (Item.isCustomItem(item) && item.getType().equals(Material.POPPY)) {
+        if (Item.isSame(this.getItem(), item)) {
 
-            new TransformationDaisy(event.getBlock()).runTaskTimer(RPG.plugin, 0, 1);
+            TransformationDaisy transformation = new TransformationDaisy(event.getBlock());
+            runnables.add(transformation);
+            transformation.runTaskTimer(RPG.plugin, 0, 1);
+
+        }
+
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent event) {
+
+        Block block = event.getBlock();
+        TransformationDaisy runnable;
+
+        if ((runnable = runnablesContainBlock(block)) != null) {
+
+            runnable.cancel();
+            runnables.remove(runnable);
 
         }
 
