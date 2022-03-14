@@ -1,6 +1,5 @@
 package fr.vx.rpg.classes.Item;
 
-import com.sun.istack.internal.NotNull;
 import fr.vx.rpg.RPG;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -40,7 +39,7 @@ public class Food implements Listener
     private boolean hasEffects=false;
     private boolean hasAttribut=false;
 
-    public Food(@NotNull String name, @NotNull Material icon, @NotNull Rarity rarity,@NotNull int FoodRegeneration,int saturation,@NotNull double basePrice,@NotNull double HeartRegenerated,@NotNull double DamageTaked,@NotNull double HeartGived) {
+    public Food(String name, Material icon, Rarity rarity,int FoodRegeneration,int saturation,double basePrice,double HeartRegenerated,double DamageTaked,double HeartGived) {
         this.name = name;
         this.icon = icon;
         this.rarity = rarity;
@@ -68,7 +67,7 @@ public class Food implements Listener
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
     }
 
-    public Food(@NotNull String name, @NotNull Material icon, @NotNull Rarity rarity,@NotNull int FoodRegeneration,int saturation,@NotNull double basePrice,@NotNull double HeartRegenerated,@NotNull double DamageTaked,@NotNull double HeartGived, List<PotionEffect> potionEffect) {
+    public Food(String name, Material icon, Rarity rarity,int FoodRegeneration,int saturation,double basePrice,double HeartRegenerated,double DamageTaked,double HeartGived, List<PotionEffect> potionEffect) {
         this.name = name;
         this.icon = icon;
         this.rarity = rarity;

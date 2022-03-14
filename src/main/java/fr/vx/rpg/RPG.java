@@ -24,6 +24,8 @@ import fr.vx.rpg.utils.PacketsReader;
 import net.minecraft.server.v1_16_R3.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
@@ -78,6 +80,7 @@ public final class RPG extends JavaPlugin
         this.getCommand("coop").setExecutor(new coopCommand());
         this.getCommand("chat").setExecutor(new chatcommands());
         this.getCommand("rpg").setTabCompleter(new RpgCmdTbCompletion());
+        
     }
 
     @Override
