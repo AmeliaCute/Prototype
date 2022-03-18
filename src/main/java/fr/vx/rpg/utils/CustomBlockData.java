@@ -107,4 +107,9 @@ public class CustomBlockData implements PersistentDataContainer {
    public PersistentDataAdapterContext getAdapterContext() {
        return pdc.getAdapterContext();
    }
+
+   public static boolean[] MultiFacing(boolean north, boolean south, boolean east, boolean west, boolean up, boolean down)
+   {
+        boolean[] x = new boolean[6];x[0] = north;x[1] = south;x[2] = east;x[3] = west;x[4] = up;x[5] = down;return x;
+   }
 }

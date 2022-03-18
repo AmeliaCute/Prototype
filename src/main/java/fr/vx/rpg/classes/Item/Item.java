@@ -41,7 +41,8 @@ public class Item {
 		this.description = rarity.getDescription();
 		this.rarity = rarity;
 		this.basePrice = basePrice;
-		this.identifier = Maths.toAsciiInteger(name).toString();
+		this.identifier = String.valueOf(Maths.toAsciiInteger(name).bitCount());
+		System.out.println("[RPG] registering item "+name+" with indentifier "+String.valueOf(Maths.toAsciiInteger(name).bitCount()));
 		
 	}
 
@@ -123,6 +124,7 @@ public class Item {
 		ItemMeta itemMeta = item.getItemMeta();
 		itemMeta.setDisplayName(rarity.getColor() + name);
 		itemMeta.setLore(Arrays.asList("",rarity.getDescription(), ChatColor.GOLD+""+basePrice+" pieces"));
+		itemMeta.setCustomModelData(Maths.toAsciiInteger(name).bitCount());
 		
 		if (enchanted) {
 			
@@ -148,7 +150,6 @@ public class Item {
 		if (nmsItem.hasTag()) {
 			NBTTagCompound itemCompound = nmsItem.getTag();
 			if (itemCompound.getString("custom_id").equalsIgnoreCase(item.getIdentifier())) {
-				System.out.println("1234");
 				return true;
 			}
 		}

@@ -42,15 +42,17 @@ public class RpgCmd implements CommandExecutor{
                         a.addItem(Items.items.get(i));
 
                     }
-                    //TODO à modif
-                    a.addItem(Botania.DAISY.getItem().getItemStack());
+                    for(int i = 0; i < Botania.ITEMS.size(); i++)
+                    {
+                        a.addItem(Botania.ITEMS.get(i));
+                    }
                     player.openInventory(a);
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("version"))
                 {
-                    player.sendMessage("Version: 1.3.6.1");
-                    player.sendMessage("Date du build: 5/2/2022 a 1:41");
+                    player.sendMessage("Version: 1.3.6.8.1");
+                    player.sendMessage("Date du build: 18/3/2022 a 4:06AM");
                 }
             }
             if(args.length == 2)

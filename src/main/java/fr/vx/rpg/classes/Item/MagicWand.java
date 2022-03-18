@@ -5,9 +5,11 @@ import fr.vx.rpg.classes.Spell.Spell;
 import fr.vx.rpg.classes.Spell.SpellEvents;
 import fr.vx.rpg.classes.Spell.impl.Spells;
 import fr.vx.rpg.utils.Maths;
+import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,6 +20,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MagicWand extends ItemStack implements Listener
 {
@@ -29,6 +32,7 @@ public class MagicWand extends ItemStack implements Listener
     private final double basePrice;
     private final int MaxMana;
     private final List<Spell> spell;
+    private final String identifier;
 
     private int Mana;
 
@@ -54,8 +58,9 @@ public class MagicWand extends ItemStack implements Listener
         this.MaxMana = MaxMana;
         this.spell = spell;
         this.Mana = 0;
+        this.identifier = String.valueOf(Maths.toAsciiInteger(name).bitCount());
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
-        System.out.println("Registering item with id :"+RPG.MODID+":"+name+":"+id);
+        System.out.println("[RPG] registering MagicWand "+name+" with indentifier "+Maths.toAsciiInteger(name).bitCount());
     }
 
     public static List<Spell> getItemSpells(ItemStack itemStack)
@@ -76,6 +81,8 @@ public class MagicWand extends ItemStack implements Listener
         }
         return x;
     }
+
+    public String getIdentifier() {return this.identifier;}
 
     public int getMana()
     {
@@ -131,7 +138,7 @@ public class MagicWand extends ItemStack implements Listener
         ItemMeta WandMeta = Wand.getItemMeta();
 
         WandMeta.setDisplayName(rarity.getColor()+name);
-        WandMeta.setCustomModelData(id);
+        WandMeta.setCustomModelData(Maths.toAsciiInteger(name).bitCount());
 
         List<String> itemDesc = new ArrayList<String>();
         itemDesc.add(null);
@@ -157,8 +164,13 @@ public class MagicWand extends ItemStack implements Listener
         itemDesc.add(null);
         itemDesc.add(rarity.getColor()+rarity.getDescription());
         WandMeta.setLore(itemDesc);
-
         Wand.setItemMeta(WandMeta);
+
+        net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(Wand);
+        NBTTagCompound itemCompound = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+        itemCompound.setString("custom_id", this.identifier);
+        nmsItem.setTag(itemCompound);
+        Wand = CraftItemStack.asBukkitCopy(nmsItem);
 
         return Wand;
     }
@@ -169,22 +181,24 @@ public class MagicWand extends ItemStack implements Listener
         Player player = event.getPlayer();
         if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK))
         {
-           if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(this.rarity.getColor()+this.name))
+           if(isInstance(this, player.getInventory().getItemInMainHand()))
            {
                SpellEvents.sendSpellByItem(getItemSpells(player.getInventory().getItemInMainHand()).get(0), player);
-           }
+           }else return;
         }
         else return;
     }
 
-    public boolean isInstance(Player player)
+    public boolean isInstance(MagicWand wand, ItemStack itemStack)
     {
-        boolean x = false;
-        if(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(this.rarity.getColor()+this.name))
-        {
-            x = true;
+        net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(itemStack);
+        if (nmsItem.hasTag()) {
+            NBTTagCompound itemCompound = nmsItem.getTag();
+            if (itemCompound.getString("custom_id").equalsIgnoreCase(wand.getIdentifier())) {
+                return true;
+            }
         }
-        return x;
+        return false;
     }
 
 }

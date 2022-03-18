@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "0": "minecraft:block/lodestone"
+  },
+  "overrides":[
+    {
+      "predicate":{
+        "custom_model_data":-1
+      },
+      "model": "rpg:block/manapoolblock"
+    }
+  ]
+}

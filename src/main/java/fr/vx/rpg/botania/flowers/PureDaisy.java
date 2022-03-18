@@ -1,17 +1,16 @@
 package fr.vx.rpg.botania.flowers;
 
 import fr.vx.rpg.RPG;
+import fr.vx.rpg.botania.Botania;
 import fr.vx.rpg.botania.runnables.TransformationDaisy;
 import fr.vx.rpg.classes.Item.Item;
 import fr.vx.rpg.classes.Item.Rarity;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,7 @@ public class PureDaisy extends fr.vx.rpg.classes.blocks.Block {
     public PureDaisy() {
 
         super(new Item(Material.POPPY, "Pure Daisy", Rarity.UNCOMMON, 0));
+        Botania.ITEMS.add(this.getItem().getItemStack());
 
     }
 
