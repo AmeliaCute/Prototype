@@ -26,6 +26,7 @@ public class Block implements Listener {
     public Block(Item item) {
         this.item = item;
         RPG.plugin.getServer().getPluginManager().registerEvents(this, RPG.plugin);
+        RPG.LOGGER.info("Registering block "+item.getName()+ " with id "+item.getIdentifier());
     }
 
     public Block(Item item, boolean[] multipleFacing) {
@@ -43,6 +44,11 @@ public class Block implements Listener {
     public void applyBlock(org.bukkit.block.Block block) {
 
         block.setMetadata("custom_id", new FixedMetadataValue(RPG.plugin, item.getIdentifier()));
+    }
+
+    public void resetBlock(org.bukkit.block.Block block) {
+
+        block.setMetadata("custom_id", new FixedMetadataValue(RPG.plugin, null));
     }
 
     public void applyMultipleFacing(org.bukkit.block.Block block, boolean[] multipleFacing)
@@ -82,6 +88,7 @@ public class Block implements Listener {
         if (block.hasMetadata("custom_id") && block.getMetadata("custom_id").get(0).asString().equals(this.getItem().getIdentifier())) {
             event.setDropItems(false);
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), this.getItem().getItemStack());
+            resetBlock(block);
         }
 
     }

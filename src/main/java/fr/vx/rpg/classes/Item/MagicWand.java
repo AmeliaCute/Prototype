@@ -60,7 +60,7 @@ public class MagicWand extends ItemStack implements Listener
         this.Mana = 0;
         this.identifier = String.valueOf(Maths.toAsciiInteger(name).bitCount());
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
-        System.out.println("[RPG] registering MagicWand "+name+" with indentifier "+Maths.toAsciiInteger(name).bitCount());
+        RPG.LOGGER.info("registering MagicWand "+name+" with indentifier "+Maths.toAsciiInteger(name).bitCount());
     }
 
     public static List<Spell> getItemSpells(ItemStack itemStack)

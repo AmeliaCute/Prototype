@@ -1,25 +1,26 @@
 package fr.vx.rpg.botania;
 
-import fr.vx.rpg.botania.Pool.ManaPool;
-import fr.vx.rpg.botania.flowers.PureDaisy;
+import fr.vx.rpg.botania.Item.BotaniaItems;
+import fr.vx.rpg.utils.logger;
 import org.bukkit.inventory.ItemStack;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Botania {
 
-    public static PureDaisy DAISY;
-    public static ManaPool MANAPOOL;
+    public static fr.vx.rpg.utils.logger LOGGER = new logger("BOTANIA");
 
     public static List<ItemStack> ITEMS;
 
-    public static void init() {registerItems();}
+    public static void init() {
+        LOGGER.info("Starting..");
+        registerItems();}
 
     public static void registerItems() {
+        LOGGER.info("Registering items");
         ITEMS = new ArrayList<>();
-        DAISY = new PureDaisy();
-        MANAPOOL = new ManaPool();
+        BotaniaItems.init();
+        LOGGER.info(ITEMS.size()+" items has been registered");
     }
 
 

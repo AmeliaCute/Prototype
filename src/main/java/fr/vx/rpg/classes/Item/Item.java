@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
+import fr.vx.rpg.RPG;
 import fr.vx.rpg.utils.Maths;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.ChatColor;
@@ -42,8 +43,8 @@ public class Item {
 		this.rarity = rarity;
 		this.basePrice = basePrice;
 		this.identifier = String.valueOf(Maths.toAsciiInteger(name).bitCount());
-		System.out.println("[RPG] registering item "+name+" with indentifier "+String.valueOf(Maths.toAsciiInteger(name).bitCount()));
-		
+		RPG.LOGGER.info("registering item "+name+ " with id "+Maths.toAsciiInteger(name).bitCount());
+
 	}
 
 	/**
@@ -61,7 +62,6 @@ public class Item {
 		this.enchants = enchants;
 		this.enchantsLvl = enchantsLvl;
 		enchanted = false;
-		
 	}
 
 	public String getIdentifier() {

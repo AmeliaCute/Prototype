@@ -65,6 +65,7 @@ public class Food implements Listener
             this.hasAttribut = true;
         }
         Bukkit.getPluginManager().registerEvents(this, RPG.getPlugin(RPG.class));
+        RPG.LOGGER.info("Registering food "+name+"");
     }
 
     public Food(String name, Material icon, Rarity rarity,int FoodRegeneration,int saturation,double basePrice,double HeartRegenerated,double DamageTaked,double HeartGived, List<PotionEffect> potionEffect) {

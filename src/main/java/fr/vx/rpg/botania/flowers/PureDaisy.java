@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,6 @@ public class PureDaisy extends fr.vx.rpg.classes.blocks.Block {
     public PureDaisy() {
 
         super(new Item(Material.POPPY, "Pure Daisy", Rarity.UNCOMMON, 0));
-        Botania.ITEMS.add(this.getItem().getItemStack());
 
     }
 
@@ -59,13 +59,11 @@ public class PureDaisy extends fr.vx.rpg.classes.blocks.Block {
         Block block = event.getBlock();
         TransformationDaisy runnable;
 
-        if ((runnable = runnablesContainBlock(block)) != null) {
+            if ((runnable = runnablesContainBlock(block)) != null) {
 
             runnable.cancel();
             runnables.remove(runnable);
-
-        }
-
+            }
     }
 
 

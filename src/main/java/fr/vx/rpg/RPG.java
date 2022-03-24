@@ -16,11 +16,10 @@ import fr.vx.rpg.classes.teams.coopCommand;
 import fr.vx.rpg.handlers.SpawnRunnable;
 import fr.vx.rpg.utils.MySql;
 import fr.vx.rpg.utils.PacketsReader;
+import fr.vx.rpg.utils.logger;
 import net.minecraft.server.v1_16_R3.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Tag;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -37,8 +36,9 @@ public final class RPG extends JavaPlugin
 
     public static List<EntityPlayer> npcList = new ArrayList<EntityPlayer>();
     public MySql mySql = new MySql();
-    public static String MODID = "rpg";
+    public static String MODID = "RPG";
     public static Plugin plugin;
+    public static fr.vx.rpg.utils.logger LOGGER = new logger(MODID);
 
     @Override
     public void onEnable()

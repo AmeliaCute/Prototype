@@ -1,5 +1,6 @@
 package fr.vx.rpg.botania.runnables;
 
+import fr.vx.rpg.botania.Blocks.LivingRock;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.libs.org.apache.commons.lang3.tuple.Pair;
@@ -91,8 +92,6 @@ public class TransformationDaisy extends BukkitRunnable {
                 toRemove.add(pair);
                 continue;
             }
-            System.out.println(pair.getKey());
-            System.out.println(pair.getValue());
             World world = pair.getKey().getWorld();
             Pair<Block, Integer> newPair = Pair.of(pair.getKey(), pair.getValue() + 1);
             Location location = pair.getKey().getLocation();
@@ -100,7 +99,8 @@ public class TransformationDaisy extends BukkitRunnable {
                 world.spawnParticle(Particle.SPELL_INSTANT, location.add(0.5, 1.25, 0.5), 1);
             if (newPair.getValue() == 400) {
                 //TODO à modifier
-                newPair.getKey().setType(Material.DIAMOND_BLOCK);
+                Location a = newPair.getKey().getLocation();
+                new LivingRock().place(a);
                 toRemove.add(pair);
             } else
                 actualTransformations.set(actualTransformations.indexOf(pair), newPair);
