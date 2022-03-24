@@ -1,5 +1,5 @@
 {
    "multipart":[
-       {"when":{"down":true,"east":false,"north":false,"south":false,"up":false,"west":false},"apply":{"model":"rpg:block/null"}}
+       {"when":{"down":false,"east":false,"north":false,"south":false,"up":true,"west":false},"apply":{"model":"rpg:block/null"}}
    ]
 }

@@ -9,6 +9,36 @@
           "custom_model_data": 25
         },
         "model": "rpg:block/manapoolblock"
+      },
+      {
+        "predicate": {
+          "custom_model_data": 51
+        },
+        "model": "rpg:block/livingrock"
+      },
+      {
+        "predicate": {
+          "custom_model_data": 139
+        },
+        "model": "rpg:block/manapoolblock1"
+      },
+      {
+        "predicate": {
+          "custom_model_data": 154
+        },
+        "model": "rpg:block/manapoolblock2"
+      },
+      {
+        "predicate": {
+          "custom_model_data": 145
+        },
+        "model": "rpg:block/manapoolblock3"
+      },
+      {
+        "predicate": {
+          "custom_model_data": 155
+        },
+        "model": "rpg:block/manapoolblock4"
       }
     ]
   }

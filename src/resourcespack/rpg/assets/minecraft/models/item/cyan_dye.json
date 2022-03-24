@@ -1,0 +1,14 @@
+{   
+    "parent": "minecraft:item/handheld",  
+    "textures": {
+      "layer0": "minecraft:item/cyan_dye"
+    },
+      "overrides": [
+        {
+          "predicate": {
+            "custom_model_data": 89
+          },
+          "model": "rpg:item/manasteel_ingot"
+        }
+      ]
+    }
